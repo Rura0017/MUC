@@ -1,0 +1,113 @@
+@font-face {
+  font-family: "DOT";
+  src: url("../font/DotGothic16-Regular.ttf") format("truetype");
+}
+
+body {
+  font-family: "DOT", sans-serif;
+  background-color: hwb(108 33% 2% / 0.996);
+}
+
+details summary {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+details details summary {
+  font-size: 16px;
+}
+
+details p,
+details li,
+details a {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.small {
+  font-size: 12px;
+}
+
+.normal {
+  font-size: 16px;
+}
+
+.big {
+  font-size: 24px;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink-link {
+  color: red;
+  margin-left: 10px;
+  animation: blink 1s infinite;
+}
+
+.mbody {
+  background-color: #21ff16;
+  display: inline-block;
+  padding: 6px 10px;
+}
+
+.mbody h1 {
+  margin: 0;
+}
+
+.admin {
+  color: #d400ff;
+  display: inline-block;
+}
+
+.member {
+  color:#1212ff;
+  display: inline-block;
+}
+
+.news{
+  background-color: #c2ff77;
+  border: 3px dotted black;
+  width: 500px;
+}
+
+.news h2 {
+  margin-bottom: 4px;
+}
+
+.newsbox ul {
+  margin-top: 0;
+}
+
+.newsbox {
+  overflow-y: scroll;
+  display: inline-block;
+  height: 50px;
+}
+
+.sentence {
+  font-style: italic;
+  background-color: #9dfd8c;
+  display: inline-block;
+  border: 1px solid rgb(0, 0, 0);
+  padding: 8px 12px;
+  margin-top: 8px;
+}
+
+.member-row {
+  margin-top: 10px;
+}
+
+.member-row b {
+  margin-right: 8px;
+}
