@@ -1,21 +1,174 @@
+/* フォント設定 */
 @font-face {
   font-family: "DOT";
   src: url("../font/DotGothic16-Regular.ttf") format("truetype");
 }
 
+/* 全体 */
 body {
   font-family: "DOT", sans-serif;
-  background-color: hwb(108 33% 2% / 0.996);
+  color: #1f2937;
+  background-image: url("../20260510_1450432.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+}
+
+/* 中央の貫通エリア */
+.site-wrapper {
+  width: min(100%, 600px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 16px;
+
+  background-color: #f4f8fb;
+  box-sizing: border-box;
+
+  border-left: 2px solid #005bac;
+  border-right: 2px solid #005bac;
+}
+
+/* タイトル部分 */
+.mbody {
+  background-color: #005bac;
+  color: #AACD05;
+  display: inline-block;
+  padding: 8px 14px;
+  border-left: 8px solid #00a0e9;
+}
+
+.mbody h1 {
+  margin: 0;
+    font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* 読み込み画面 */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #f4f8fb;
+  color: #005bac;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  z-index: 9999;
+}
+
+body.loaded #loading-screen {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* 参加者欄 */
+.member-row {
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px 10px;
+  background-color: #ffffff;
+  border: 1px solid #d7e3ef;
+  box-sizing: border-box;
+}
+
+.member-row b {
+  margin-right: 8px;
+}
+
+.admin {
+  color: #005bac;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.member {
+  color: #3a9700;
+  display: inline-block;
+}
+
+/* 募集中リンク */
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink-link {
+  color: #f41f4d;
+  margin-left: 10px;
+  font-weight: bold;
+  animation: blink 1.2s infinite;
+}
+
+/* お知らせ */
+.top-news {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.news {
+  flex: 1;
+  max-width: 360px;
+}
+
+.news h2 {
+  color: #005bac;
+  margin-bottom: 6px;
+  border-bottom: 3px solid #00a0e9;
+}
+
+.newsbox {
+  background-color: #ffffff;
+  border: 1px solid #b9d7ef;
+  border-left: 6px solid #00a0e9;
+  margin-top: 0;
+  padding: 10px;
+  max-height: 160px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* 詳細表示 */
+details {
+  width: 100%;
+  margin-top: 14px;
 }
 
 details summary {
+  color: #ffffff;
+  background-color: #005bac;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
+  padding: 8px 12px;
+  border-left: 8px solid #00a0e9;
+  box-sizing: border-box;
 }
 
-details details summary {
-  font-size: 16px;
+.sentence {
+  font-style: normal;
+  background-color: #ffffff;
+  display: block;
+  border: 1px solid #d7e3ef;
+  border-left: 6px solid #00a0e9;
+  padding: 10px 14px;
+  margin-top: 8px;
+  box-sizing: border-box;
 }
 
 details p,
@@ -25,6 +178,7 @@ details a {
   font-weight: normal;
 }
 
+/* 文字サイズ */
 .small {
   font-size: 12px;
 }
@@ -37,77 +191,35 @@ details a {
   font-size: 24px;
 }
 
-@keyframes blink {
-  0% {
-    opacity: 1;
+/* スマホ・狭い画面用 */
+@media (max-width: 500px) {
+  .site-wrapper {
+    width: 100%;
+    padding: 10px;
+    border-left: none;
+    border-right: none;
   }
-  50% {
-    opacity: 0;
+
+  .newsbox {
+    max-height: 500px;
   }
-  100% {
-    opacity: 1;
+
+  .top-news {
+    gap: 12px;
   }
 }
 
-.blink-link {
-  color: red;
-  margin-left: 10px;
-  animation: blink 1s infinite;
+/* Twitter埋め込み用。一旦停止 */
+/*
+.activity {
+  flex: 1;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
-.mbody {
-  background-color: #21ff16;
-  display: inline-block;
-  padding: 6px 10px;
+.twitter-tweet {
+  width: 50px;
+  max-width: 320px !important;
 }
-
-.mbody h1 {
-  margin: 0;
-}
-
-.admin {
-  color: #d400ff;
-  display: inline-block;
-}
-
-.member {
-  color:#1212ff;
-  display: inline-block;
-}
-
-.news{
-  background-color: #c2ff77;
-  border: 3px dotted black;
-  width: 500px;
-}
-
-.news h2 {
-  margin-bottom: 4px;
-}
-
-.newsbox ul {
-  margin-top: 0;
-}
-
-.newsbox {
-  overflow-y: scroll;
-  display: inline-block;
-  height: 50px;
-}
-
-.sentence {
-  font-style: italic;
-  background-color: #9dfd8c;
-  display: inline-block;
-  border: 1px solid rgb(0, 0, 0);
-  padding: 8px 12px;
-  margin-top: 8px;
-}
-
-.member-row {
-  margin-top: 10px;
-}
-
-.member-row b {
-  margin-right: 8px;
-}
+*/
