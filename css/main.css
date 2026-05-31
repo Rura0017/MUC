@@ -5,21 +5,39 @@
 }
 
 /* 全体 */
+html {
+  overflow-y: scroll;
+}
+
 body {
   font-family: "DOT", sans-serif;
   color: #1f2937;
-  background-image: url("../20260510_1450432.jpg");
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background-image: url("../bg_image.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  margin: 0;
-  padding: 0;
+
+  z-index: -1;
 }
 
 /* 中央の貫通エリア */
+:root {
+  --site-width: 700px;
+}
+
 .site-wrapper {
-  width: min(100%, 600px);
+  width: min(100%, var(--site-width));
   min-height: 100vh;
   margin: 0 auto;
   padding: 16px;
@@ -35,16 +53,23 @@ body {
 .mbody {
   background-color: #005bac;
   color: #AACD05;
-  display: inline-block;
-  padding: 8px 14px;
+
+  display: block;
+  width: 100%;
+
+  padding: 10px 24px;
   border-left: 8px solid #00a0e9;
+  box-sizing: border-box;
 }
 
 .mbody h1 {
   margin: 0;
-    font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+
+  font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-weight: bold;
   letter-spacing: 1px;
+
+  line-height: 1.15;
 }
 
 /* 読み込み画面 */
@@ -66,14 +91,51 @@ body.loaded #loading-screen {
   transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
+.header-content {
+  width: 100%;
+  border: 4px double;
+  background-color: #ffffff;
+  margin-top: 10px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+}
+
+.header-menu li {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.header-menu li::before {
+  content: "▸ ";
+}
+
+.header-menu a {
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
 /* 参加者欄 */
 .member-row {
   width: 100%;
   margin-top: 12px;
   padding: 8px 10px;
+  box-sizing: border-box;
   background-color: #ffffff;
   border: 1px solid #d7e3ef;
-  box-sizing: border-box;
 }
 
 .member-row b {
@@ -189,6 +251,29 @@ details a {
 
 .big {
   font-size: 24px;
+}
+
+.x-fixed-link {
+  position: fixed;
+
+  right: max(6px, calc((100vw - var(--site-width)) / 2 + 6px));
+  bottom: calc(6px + env(safe-area-inset-bottom));
+
+  padding: 8px 14px;
+
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+
+  font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+
+  z-index: 1000;
 }
 
 /* スマホ・狭い画面用 */
