@@ -87,7 +87,7 @@ $posts = db()
 
     <nav class="header-content">
       <ul class="header-menu">
-        <li><a href="../index.php">トップに戻る</a></li>
+        <li><a href="../index.html">トップに戻る</a></li>
       </ul>
     </nav>
 
