@@ -3,80 +3,400 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- CSS読み込み -->
-  <link rel="stylesheet" href="css/main.css?v=2">
+  <link rel="stylesheet" href="css/main.css?v=13">
 
-  <!-- スマホ対応 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>岡山理科大学なんかしましょうサークル(MUC)</title>
 
-  <link rel="icon" href="/favicon.png" type="image/png">
-  
-  <!-- OGP設定 -->
-  <meta property="og:title" content="岡山理科大学なんかしましょうサークル(MUC)">
-  <meta property="og:description" content="MUCの公式HP">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="MUC">
-  <meta property="og:url" content="https://ousmuc.motti-web.com/">
-  <meta property="og:image" content="https://ousmuc.motti-web.com/ogp.png">
+  <link
+    rel="icon"
+    href="./image/ogp.png"
+    type="image/png"
+  >
 
-  <!-- X / Twitterカード設定 -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="岡山理科大学なんかしましょうサークル(MUC)">
-  <meta name="twitter:description" content="MUCの公式HP">
-  <meta name="twitter:image" content="https://ousmuc.motti-web.com/ogp.png">
+  <meta
+    property="og:title"
+    content="岡山理科大学なんかしましょうサークル(MUC)"
+  >
+  <meta
+    property="og:description"
+    content="MUCの公式HP"
+  >
+  <meta
+    property="og:type"
+    content="website"
+  >
+  <meta
+    property="og:site_name"
+    content="MUC"
+  >
+  <meta
+    property="og:url"
+    content="https://ousmuc.motti-web.com/"
+  >
+  <meta
+    property="og:image"
+    content="https://ousmuc.motti-web.com/image/ogp.png"
+  >
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+  <meta
+    name="twitter:title"
+    content="岡山理科大学なんかしましょうサークル(MUC)"
+  >
+  <meta
+    name="twitter:description"
+    content="MUCの公式HP"
+  >
+  <meta
+    name="twitter:image"
+    content="https://ousmuc.motti-web.com/image/ogp.png"
+  >
 </head>
 
 <body class="loading">
-  <div id="loading-screen">読み込み中...</div>
+  <div id="loading-screen">
+    読み込み中...
+  </div>
 
   <div class="site-wrapper">
     <div class="mbody">
-      <h1>岡山理科大学<br>なんかしましょう<br>非公認サークル<br></h1>
+      <h1>
+        岡山理科大学<br>
+        なんかしましょう<br>
+        非公認サークル
+      </h1>
     </div>
-  <div class ="under-title">
-    <nav class ="header-content">
-        <ul class="header-menu">
-          <li><a href="./act_menu.html">活動内容</a></li>
-          <li><a href="./purpose.html">目的</a></li>
-          <li><a href="./regulations.html">活動規定</a></li>
-          <li><a href="./join.html">加入方法</a></li>
-        </ul>
-    </nav>
 
-    <div class="member-row">
-      <b>参加者：</b>
-      <a href="./join.html" class="blink-link">＞＞随時募集中＜＜</a><br>
-      <a href="https://x.com/ous_nannkasy0" class="admin">＠るら(弊サークル考案者)</a>
-      <a class="member">＠にくにくにくバーガー</a>
-      <a class="member">＠えるむ</a>
+    <div class="under-title">
+      <nav class="header-content">
+        <ul class="header-menu">
+          <li><a href="./pages/act_menu.html">活動内容</a></li>
+          <li><a href="./pages/purpose.html">目的</a></li>
+          <li><a href="./pages/regulations.html">活動規定</a></li>
+          <li><a href="./pages/join.html">加入方法</a></li>
+          <li><a href="./pages/login.php">ログイン</a></li>
+        </ul>
+      </nav>
+
+      <div class="member-row">
+        <b>参加者：</b>
+
+        <a
+          href="./pages/join.html"
+          class="blink-link"
+        >
+          ＞＞随時募集中＜＜
+        </a>
+
+        <br>
+
+        <a
+          href="https://x.com/ous_nannkasy0"
+          class="admin"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ＠るら(弊サークル考案者)
+        </a>
+
+        <span class="member">
+          ＠にくにくにくバーガー
+        </span>
+
+        <span class="member">
+          ＠えるむ
+        </span>
+      </div>
     </div>
-  </div>
-    <div class="top-news">
-      <div class="news">
+
+    <div class="home-panels">
+      <section class="home-panel latest-post">
+        <h2>最新の投稿</h2>
+
+        <!-- APIから最新投稿を全文取得して、ここへ表示する -->
+        <div id="latest-post-container">
+          <div class="latest-post-card">
+            <p>最新の投稿を読み込んでいます。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-panel home-news">
         <h2>お知らせ</h2>
 
         <div class="newsbox">
           <ul>
+            <li>7/24 大幅な更新を行いました.</li>
             <li>5/18 サーバーの移行を行いました.</li>
             <li>4/13 初メンバー加入を記念して「年中行事をやってみようの会」が始動しました.</li>
             <li>4/5 HPのURLが更新されました.</li>
             <li>2026/03/15 サイトを公開しました.</li>
           </ul>
         </div>
-      </div>
+      </section>
     </div>
   </div>
-<div class="link-wrapper">
-  <a class="insta-link" href="https://www.instagram.com/ous_muc" target="_blank" rel="noopener noreferrer">Instagram</a>
-  <a class="x-link" href="https://x.com/ous_nannkasy0" target="_blank" rel="noopener noreferrer">X.com</a>
-</div>
+
+  <div class="link-wrapper">
+    <a
+      class="insta-link"
+      href="https://www.instagram.com/ous_muc"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Instagram
+    </a>
+
+    <a
+      class="x-link"
+      href="https://x.com/ous_nannkasy0"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      X.com
+    </a>
+  </div>
+
   <script>
-    window.addEventListener("load", function () {
+    "use strict";
+
+    /**
+     * JavaScriptで文字列をHTMLへ埋め込む際に、
+     * タグとして実行されない安全な文字列へ変換する。
+     */
+    function escapeHtml(value) {
+      const element = document.createElement("div");
+      element.textContent = String(value);
+
+      return element.innerHTML;
+    }
+
+    /**
+     * X公式スクリプトを読み込み、
+     * 本文中のX投稿URLから作られた領域を埋め込み表示へ変換する。
+     */
+    function ensureXWidgets() {
+      const existingScript =
+        document.getElementById("twitter-wjs");
+
+      if (existingScript) {
+        renderXPosts();
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.id = "twitter-wjs";
+      script.src = "https://platform.x.com/widgets.js";
+      script.async = true;
+      script.onload = function () {
+        renderXPosts();
+      };
+
+      document.head.appendChild(script);
+    }
+
+    function renderXPosts(attempt = 0) {
+      if (
+        !window.twttr ||
+        !window.twttr.widgets ||
+        !window.twttr.widgets.createTweet
+      ) {
+        if (attempt < 100) {
+          window.setTimeout(function () {
+            renderXPosts(attempt + 1);
+          }, 100);
+        }
+
+        return;
+      }
+
+      const containers =
+        document.querySelectorAll(
+          ".x-post-embed[data-x-post-id]"
+        );
+
+      containers.forEach(function (container) {
+        if (container.dataset.xLoaded === "true") {
+          return;
+        }
+
+        container.dataset.xLoaded = "true";
+
+        window.twttr.widgets.createTweet(
+          container.dataset.xPostId,
+          container,
+          {
+            align: "center",
+            dnt: true,
+            theme: "light",
+            conversation: "none"
+          }
+        ).then(function (element) {
+          if (!element) {
+            container.dataset.xLoaded = "false";
+            return;
+          }
+
+          const fallback =
+            container.querySelector(
+              ".x-embed-fallback"
+            );
+
+          if (fallback) {
+            fallback.remove();
+          }
+        }).catch(function (error) {
+          container.dataset.xLoaded = "false";
+
+          console.error(
+            "X投稿の埋め込みに失敗しました。",
+            error
+          );
+        });
+      });
+    }
+
+    /**
+     * PHP APIから最新投稿を取得する。
+     * 本文は省略せず、投稿内容を最初からすべて表示する。
+     */
+    async function loadLatestPost() {
+      const container =
+        document.getElementById(
+          "latest-post-container"
+        );
+
+      try {
+        const response = await fetch(
+          "./api/latest_post.php",
+          {
+            headers: {
+              "Accept": "application/json"
+            },
+            cache: "no-store"
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(
+            "最新投稿の取得に失敗しました。"
+          );
+        }
+
+        const data = await response.json();
+
+        if (!data.post) {
+          container.innerHTML = `
+            <div class="latest-post-card">
+              <p>投稿はまだありません。</p>
+
+              <div class="latest-post-actions">
+                <a
+                  class="all-posts-link"
+                  href="./pages/posts.php"
+                >
+                  他の投稿も確認する
+                </a>
+              </div>
+            </div>
+          `;
+
+          return;
+        }
+
+        const post = data.post;
+        const postId = Number(post.id);
+
+        if (!Number.isInteger(postId)) {
+          throw new Error(
+            "投稿IDが正しくありません。"
+          );
+        }
+
+        container.innerHTML = `
+          <article class="latest-post-card">
+            <h3>${escapeHtml(post.title)}</h3>
+
+            <p class="latest-post-date">
+              投稿日：${escapeHtml(post.created_at)}
+            </p>
+
+            <div class="latest-post-body">
+              ${post.body_html}
+            </div>
+
+            <div class="latest-post-actions">
+              <a
+                class="post-detail-link"
+                href="./pages/post.php?id=${postId}"
+              >
+                個別ページを開く
+              </a>
+
+              <a
+                class="all-posts-link"
+                href="./pages/posts.php"
+              >
+                他の投稿も確認する
+              </a>
+            </div>
+          </article>
+        `;
+
+        if (post.contains_x_post) {
+          ensureXWidgets();
+        }
+      } catch (error) {
+        console.error(error);
+
+        container.innerHTML = `
+          <div class="latest-post-card">
+            <p>
+              最新の投稿を読み込めませんでした。
+            </p>
+
+            <div class="latest-post-actions">
+              <a
+                class="all-posts-link"
+                href="./pages/posts.php"
+              >
+                投稿一覧を開く
+              </a>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function finishLoading() {
       document.body.classList.remove("loading");
       document.body.classList.add("loaded");
-    });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+          finishLoading();
+          loadLatestPost();
+        },
+        { once: true }
+      );
+    } else {
+      finishLoading();
+      loadLatestPost();
+    }
+
+    // 外部通信が遅い場合も、ページ本体は必ず表示する。
+    window.setTimeout(finishLoading, 3000);
   </script>
 </body>
 </html>
