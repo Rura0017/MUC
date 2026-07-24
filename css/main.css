@@ -34,10 +34,11 @@ body::before {
 /* 中央の貫通エリア */
 :root {
   --site-width: 700px;
+  --site-min-width: 360px;
 }
 
 .site-wrapper {
-  width: min(100%, var(--site-width));
+  width: clamp(var(--site-min-width), 100%, var(--site-width));
   min-height: 100vh;
   margin: 0 auto;
   padding: 16px;
@@ -253,11 +254,22 @@ details a {
   font-size: 24px;
 }
 
-.x-fixed-link {
+.fixed-wrapper {
   position: fixed;
-
-  right: max(6px, calc((100vw - var(--site-width)) / 2 + 6px));
+  left: 50%;
   bottom: calc(6px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+
+  width: min(100%, var(--site-width));
+  pointer-events: none;
+
+  z-index: 1000;
+}
+
+.x-link {
+  position: absolute;
+  right: 6px;
+  bottom: 0;
 
   padding: 8px 14px;
 
@@ -273,13 +285,48 @@ details a {
 
   box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
 
+  pointer-events: auto;
+}
+
+.link-wrapper{
+  position: fixed;
+  left: 50%;
+  bottom: calc(6px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+
+  width: min(100%, var(--site-width));
+  pointer-events: none;
+
   z-index: 1000;
+}
+
+.insta-link {
+  position: absolute;
+  right: 90px;
+  bottom: 0;
+
+  padding: 8px 14px;
+
+  background: -webkit-linear-gradient(15deg, #ffdb2c, rgb(249, 118, 76) 25%, rgba(255, 77, 64, 0) 50%) no-repeat;
+  background: linear-gradient(15deg, #ffdb2c, rgb(249, 118, 76) 25%, rgba(255, 77, 64, 0) 50%) no-repeat;
+  color: #F26939;
+  border: 2px solid #CF2E92;
+  border-radius: 10px;
+
+  font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+
+  pointer-events: auto;
 }
 
 /* スマホ・狭い画面用 */
 @media (max-width: 500px) {
   .site-wrapper {
-    width: 100%;
+    width: clamp(var(--site-min-width), 100%, var(--site-width));
     padding: 10px;
     border-left: none;
     border-right: none;
