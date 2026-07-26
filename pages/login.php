@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- CSS読み込み -->
     <link
         rel="stylesheet"
-        href="../css/main.css?v=3"
+        href="../css/main.css"
     >
 
     <!-- スマホ対応 -->

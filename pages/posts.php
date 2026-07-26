@@ -61,7 +61,7 @@ $posts = db()
 <head>
   <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="../css/main.css?v=11">
+  <link rel="stylesheet" href="../css/main.css">
 
   <meta
     name="viewport"

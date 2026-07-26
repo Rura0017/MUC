@@ -125,7 +125,7 @@ $shareUrl =
 
   <link
     rel="stylesheet"
-    href="../css/main.css?v=13"
+    href="../css/main.css"
   >
 
   <meta

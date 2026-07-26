@@ -33,7 +33,7 @@ $deleted = isset($_GET['deleted']);
 <head>
   <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="../css/main.css?v=6">
+  <link rel="stylesheet" href="../css/main.css">
 
   <meta
     name="viewport"
