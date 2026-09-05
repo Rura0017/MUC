@@ -79,7 +79,7 @@
     <div class="under-title">
       <nav class="header-content">
         <ul class="header-menu">
-          <li><a href="./pages/act_menu.html">活動内容</a></li>
+          <li><a href="./pages/act_menu.php">活動内容</a></li>
           <li><a href="./pages/purpose.html">目的</a></li>
           <li><a href="./pages/regulations.html">活動規定</a></li>
           <li><a href="./pages/join.html">加入方法</a></li>
@@ -101,18 +101,18 @@
 
         <a
           href="https://x.com/ous_nannkasy0"
-          class="admin"
+          class="representative"
           target="_blank"
           rel="noopener noreferrer"
         >
-          ＠るら(弊サークル考案者)
+          ＠るら（代表）
         </a>
 
-        <span class="member">
+        <span class="officer">
           ＠にくにくにくバーガー
         </span>
 
-        <span class="member">
+        <span class="officer">
           ＠えるむ
         </span>
 
@@ -147,7 +147,8 @@
 
         <div class="newsbox">
           <ul>
-            <li>7/24 大幅な更新を行いました.</li>
+            <li>9/5 【v2.0β】大幅な更新を行いました.</li>
+            <li>7/24 【v1.0】大幅な更新を行いました.</li>
             <li>5/18 サーバーの移行を行いました.</li>
             <li>4/13 初メンバー加入を記念して「年中行事をやってみようの会」が始動しました.</li>
             <li>4/5 HPのURLが更新されました.</li>
@@ -345,6 +346,8 @@
             <div class="latest-post-body">
               ${post.body_html}
             </div>
+
+            ${post.attachments_html || ""}
 
             <div class="latest-post-actions">
               <a

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /include/
+Disallow: /storage/
+Disallow: /logout.php
+Disallow: /pages/login.php
+
+Sitemap: https://ousmuc.motti-web.com/sitemap.xml

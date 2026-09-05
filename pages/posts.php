@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../include/db.php';
+require_once __DIR__ . '/../include/post_renderer.php';
 
 function h(string $value): string
 {
@@ -13,9 +14,17 @@ function h(string $value): string
     );
 }
 
-function makeExcerpt(string $body, int $length = 150): string
+function makeExcerpt(
+    string $body,
+    string $bodyFormat,
+    int $length = 150
+): string
 {
-    $text = preg_replace('~https?://\S+~u', '', $body);
+    $text = preg_replace(
+        '~https?://\S+~u',
+        '',
+        postBodyPlainText($body, $bodyFormat)
+    );
     $text = preg_replace('/\s+/u', ' ', trim($text ?? ''));
 
     if ($text === null || $text === '') {
@@ -45,12 +54,18 @@ $posts = db()
     ->query(
         '
         SELECT
-            id,
-            title,
-            body,
-            created_at
+            posts.id,
+            posts.title,
+            posts.body,
+            posts.body_format,
+            posts.created_at,
+            COUNT(post_attachments.id) AS attachment_count
         FROM posts
-        ORDER BY id DESC
+        LEFT JOIN post_attachments
+            ON post_attachments.post_id = posts.id
+        WHERE posts.post_type = \'post\'
+        GROUP BY posts.id
+        ORDER BY posts.id DESC
         '
     )
     ->fetchAll();
@@ -106,7 +121,16 @@ $posts = db()
             <?= h(formatPostDate($post['created_at'])) ?>
           </p>
 
-          <p><?= h(makeExcerpt($post['body'])) ?></p>
+          <p><?= h(makeExcerpt(
+              $post['body'],
+              $post['body_format']
+          )) ?></p>
+
+          <?php if ((int) $post['attachment_count'] > 0): ?>
+            <p class="post-attachment-indicator">
+              画像・動画の添付: <?= (int) $post['attachment_count'] ?>件
+            </p>
+          <?php endif; ?>
 
           <a
             class="post-detail-link"

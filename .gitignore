@@ -1,3 +1,5 @@
 /storage/*.sqlite
 /storage/*.sqlite-shm
 /storage/*.sqlite-wal
+/image/uploads/*
+!/image/uploads/.gitkeep

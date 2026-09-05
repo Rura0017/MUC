@@ -12,6 +12,7 @@ header(
 
 require_once __DIR__ . '/../include/db.php';
 require_once __DIR__ . '/../include/post_renderer.php';
+require_once __DIR__ . '/../include/post_attachments.php';
 
 /**
  * SQLiteの日時を日本時間の表示用文字列へ変換する。
@@ -35,15 +36,19 @@ function formatPostDate(string $createdAt): string
 }
 
 try {
-    $post = db()
+    $pdo = db();
+
+    $post = $pdo
         ->query(
             '
             SELECT
                 id,
                 title,
                 body,
+                body_format,
                 created_at
             FROM posts
+            WHERE post_type = \'post\'
             ORDER BY id DESC
             LIMIT 1
             '
@@ -63,6 +68,11 @@ try {
         exit;
     }
 
+    $attachments = postAttachmentsForPost(
+        $pdo,
+        (int) $post['id']
+    );
+
     echo json_encode(
         [
             'post' => [
@@ -72,7 +82,13 @@ try {
                 // renderPostBody()は、文章を安全なHTMLへ変換し、
                 // 本文中のX投稿URLを埋め込み用領域へ置き換える。
                 'body_html' => renderPostBody(
-                    $post['body']
+                    $post['body'],
+                    $post['body_format']
+                ),
+
+                'attachments_html' => renderPostAttachments(
+                    $attachments,
+                    './'
                 ),
 
                 'created_at' => formatPostDate(
@@ -81,7 +97,8 @@ try {
 
                 'contains_x_post' =>
                     containsXPostUrl(
-                        $post['body']
+                        $post['body'],
+                        $post['body_format']
                     ),
             ],
         ],

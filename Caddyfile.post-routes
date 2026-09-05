@@ -1,0 +1,7 @@
+# 外側の Caddy の site block 内で、reverse_proxy より前に読み込む。
+# 旧形式の /pages/posts/{id} を、PHPで確実に処理できるURLへ転送する。
+
+redir /pages/act_menu.html /pages/act_menu.php permanent
+
+@oldCleanPost path_regexp oldCleanPost ^/pages/posts/([1-9][0-9]*)$
+redir @oldCleanPost /pages/post.php?id={re.oldCleanPost.1} permanent

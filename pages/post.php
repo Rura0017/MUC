@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../include/db.php';
 require_once __DIR__ . '/../include/post_renderer.php';
+require_once __DIR__ . '/../include/post_attachments.php';
 
 /**
  * HTMLとして解釈される特殊文字を無害化する。
@@ -38,7 +39,7 @@ function formatPostDate(string $createdAt): string
     }
 }
 
-// URLの「?id=1」などから投稿IDを取得する
+// URLのidパラメーターから投稿IDを取得する
 $postId = filter_input(
     INPUT_GET,
     'id',
@@ -58,6 +59,8 @@ $stmt = $pdo->prepare(
         id,
         title,
         body,
+        body_format,
+        post_type,
         created_at
     FROM posts
     WHERE id = :id
@@ -75,11 +78,23 @@ if ($post === false) {
     exit('投稿が見つかりません。');
 }
 
+$attachments = postAttachmentsForPost(
+    $pdo,
+    (int) $post['id']
+);
+
+$isProject = $post['post_type'] === 'activity';
+
 // Xカードなどに表示する概要文を作る
+$descriptionText = postBodyPlainText(
+    $post['body'],
+    $post['body_format']
+);
+
 $description = preg_replace(
     '~https?://\S+~u',
     '',
-    $post['body']
+    $descriptionText
 );
 
 $description = preg_replace(
@@ -213,7 +228,7 @@ $shareUrl =
     <div class="mbody">
       <h1>
         MUC<br>
-        お知らせ
+        <?= $isProject ? '企画' : '投稿' ?>
       </h1>
     </div>
 
@@ -231,17 +246,31 @@ $shareUrl =
               投稿一覧
             </a>
           </li>
+
+          <?php if ($isProject): ?>
+            <li>
+              <a href="act_menu.php">
+                活動内容
+              </a>
+            </li>
+          <?php endif; ?>
         </ul>
       </nav>
     </div>
 
     <article class="public-post">
+      <?php if ($isProject): ?>
+        <p class="content-type-badge content-type-activity">
+          企画
+        </p>
+      <?php endif; ?>
+
       <h2>
         <?= h($post['title']) ?>
       </h2>
 
       <p class="admin-post-date">
-        投稿日：
+        公開日：
         <?= h(
             formatPostDate(
                 $post['created_at']
@@ -250,8 +279,13 @@ $shareUrl =
       </p>
 
       <div class="sentence post-content">
-        <?= renderPostBody($post['body']) ?>
+        <?= renderPostBody(
+            $post['body'],
+            $post['body_format']
+        ) ?>
       </div>
+
+      <?= renderPostAttachments($attachments) ?>
 
       <p>
         <a
@@ -260,7 +294,7 @@ $shareUrl =
           target="_blank"
           rel="noopener noreferrer"
         >
-          この投稿をXで共有
+          この<?= $isProject ? '企画' : '投稿' ?>をXで共有
         </a>
       </p>
     </article>
@@ -286,7 +320,10 @@ $shareUrl =
     </a>
   </div>
 
-  <?php if (containsXPostUrl($post['body'])): ?>
+  <?php if (containsXPostUrl(
+      $post['body'],
+      $post['body_format']
+  )): ?>
     <script
       async
       src="https://platform.x.com/widgets.js"
