@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         name="twitter:image"
         content="https://ousmuc.motti-web.com/image/ogp.png"
     >
-  <script src="../scripts/navigation.js?v=20260906-2" defer></script>
+  <script src="../scripts/navigation.js?v=20260910-1" defer></script>
 </head>
 
 <body>
