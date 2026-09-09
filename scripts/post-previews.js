@@ -6,8 +6,12 @@
   const status = document.getElementById("recent-posts-status");
   if (!track || !status) return;
 
-  // HTMLに置いたサンプルは、実際の投稿を取得できるまで表示しておく。
-  status.textContent = "表示サンプル";
+  // 古いHTMLが残っていてもサンプルを表示せず、取得した投稿だけを使う。
+  track.replaceChildren();
+  track.hidden = true;
+  delete track.dataset.samplePosts;
+  status.hidden = false;
+  status.textContent = "投稿を読み込んでいます…";
   track.setAttribute("aria-busy", "true");
   const controller = new AbortController();
   const timeout = window.setTimeout(() => controller.abort(), 10000);
@@ -68,13 +72,13 @@
 
     if (cards.length > 0) {
       track.replaceChildren(...cards);
-      delete track.dataset.samplePosts;
+      track.hidden = false;
       status.hidden = true;
     } else {
-      status.textContent = "表示サンプル（投稿はまだありません）";
+      status.textContent = "投稿はまだありません。";
     }
   } catch (error) {
-    status.textContent = "表示サンプル（投稿を取得できないため）";
+    status.textContent = "投稿を読み込めませんでした。上の「一覧を見る」からご確認ください。";
     console.error(error);
   } finally {
     window.clearTimeout(timeout);

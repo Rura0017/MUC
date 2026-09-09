@@ -6,7 +6,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;family=Zen+Maru+Gothic:wght@400;500&amp;display=swap">
 
-  <link rel="stylesheet" href="css/main.css?v=20260909-60">
+  <link rel="stylesheet" href="css/main.css?v=20260910-2">
   <link rel="canonical" href="https://ousmuc.motti-web.com/">
 
   <meta
@@ -63,8 +63,8 @@
     name="twitter:image"
     content="https://ousmuc.motti-web.com/image/ogp.png"
   >
-  <script src="scripts/navigation.js?v=20260906-2" defer></script>
-  <script src="scripts/news-rotator.js?v=20260908-3" defer></script>
+<script src="/scripts/navigation.js?v=20260906-2" defer></script>
+<script src="/scripts/news-rotator.js?v=20260908-3" defer></script>
 </head>
 
 <body>
@@ -112,7 +112,8 @@
       <div class="newsbox">
         <ul>
           <!-- お知らせは新しいものを先頭に追加。閉じた欄には、この最初の1件が自動で表示されます。 -->
-          <li><time datetime="2026-09-05">9/5</time> <span>【v2.0β】大幅な更新を行いました.</span></li>
+          <li><time datetime="2026-09-09">9/9</time> <span>【v2.0】大幅な更新を行いました.</span></li>
+          <li>9/5 【v2.0β】大幅な更新を行いました.</li>
           <li>7/24 【v1.0】大幅な更新を行いました.</li>
           <li>5/18 サーバーの移行を行いました.</li>
           <li>4/13 初メンバー加入を記念して「年中行事をやってみようの会」が始動しました.</li>
@@ -128,34 +129,9 @@
         <a href="./pages/posts.php">一覧を見る <span aria-hidden="true">→</span></a>
       </div>
       <p class="home-posts-status" id="recent-posts-status" role="status">
-        表示サンプル
+        投稿は上の「一覧を見る」からもご覧いただけます。
       </p>
-      <ul class="home-posts-track" id="recent-post-previews" aria-label="最近の投稿" data-sample-posts="true">
-        <li class="home-post-card">
-          <article class="home-post-link">
-            <time datetime="2026-09-09">2026/09/09</time>
-            <h3>マイクラで、大学をつくってみよう。</h3>
-            <p class="home-post-excerpt">いつも通っている校舎も、ブロックでつくると意外と難しい。建物の形を観察したり、写真を持ち寄ったりしながら、マインクラフトの中に私たちのキャンパスを再現していく企画です。建築が得意な人も、ちょっと覗いてみたい人も、一緒に遊びながら少しずつ形にしていきましょう。</p>
-            <span class="home-post-more">サンプル記事</span>
-          </article>
-        </li>
-        <li class="home-post-card">
-          <article class="home-post-link">
-            <time datetime="2026-09-08">2026/09/08</time>
-            <h3>いつもの道を、ちょっと寄り道。</h3>
-            <p class="home-post-excerpt">授業へ向かうときには通らない道に、いい景色や落ち着く場所があるかもしれません。学内をのんびり歩いて、おすすめのお散歩コースを考える企画です。木陰のベンチ、眺めのいい階段、気になる小道。見つけた場所を地図に書き込んで、自分たちなりの大学案内をつくってみませんか。</p>
-            <span class="home-post-more">サンプル記事</span>
-          </article>
-        </li>
-        <li class="home-post-card">
-          <article class="home-post-link">
-            <time datetime="2026-09-07">2026/09/07</time>
-            <h3>「それ、やってみたい」を持ち寄ろう。</h3>
-            <p class="home-post-excerpt">学内でいちばんおいしい水道水はどこだろう。ゴミ箱の場所を全部集めたら、便利な地図になるだろうか。何気ない疑問や、ふと思いついた遊びが、次の企画の始まりです。まだまとまっていないアイデアでも大歓迎。雑談しながら、面白そうなことを一緒に形にしていきましょう。</p>
-            <span class="home-post-more">サンプル記事</span>
-          </article>
-        </li>
-      </ul>
+      <ul class="home-posts-track" id="recent-post-previews" aria-label="最近の投稿" hidden></ul>
     </section>
 
     <div class="home-catchcopy">
@@ -332,6 +308,6 @@
     </a>
   </div>
 
-  <script src="./scripts/post-previews.js?v=20260909-2" defer></script>
+  <script src="./scripts/post-previews.js?v=20260909-3" defer></script>
 </body>
 </html>

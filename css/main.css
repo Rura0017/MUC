@@ -330,7 +330,22 @@ body {
   }
 
   .home-site-header .mbody {
-    padding-left: 64px;
+    min-height: 0;
+    padding: 10px 14px 14px 52px;
+    background-position: center, center, left 32%;
+  }
+
+  .home-site-header .mbody h1 {
+    font-size: clamp(24px, 7.2vw, 29px);
+    line-height: 1.18;
+    letter-spacing: 0.04em;
+  }
+
+  .home-title-university {
+    margin-bottom: 0;
+    font-size: 0.86em;
+    letter-spacing: 0.02em;
+    -webkit-text-stroke-width: 0.75px;
   }
 }
 
