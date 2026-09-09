@@ -137,10 +137,13 @@ $shareUrl =
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;display=swap">
 
   <link
     rel="stylesheet"
-    href="../css/main.css"
+    href="../css/main.css?v=20260909-10"
   >
 
   <meta
@@ -157,7 +160,7 @@ $shareUrl =
 
   <link
     rel="icon"
-    href="../image/ogp.png"
+    href="../image/favicon.png"
     type="image/png"
   >
 
@@ -217,46 +220,42 @@ $shareUrl =
     name="twitter:image"
     content="<?= h($ogImageUrl) ?>"
   >
+  <script src="../scripts/navigation.js?v=20260906-2" defer></script>
 </head>
 
-<body class="loading">
-  <div id="loading-screen">
-    読み込み中...
-  </div>
-
+<body>
   <div class="site-wrapper">
-    <div class="mbody">
+    <header class="site-header">
+      <div class="mbody">
       <h1>
         MUC<br>
         <?= $isProject ? '企画' : '投稿' ?>
       </h1>
     </div>
-
-    <div class="under-title">
-      <nav class="header-content">
-        <ul class="header-menu">
-          <li>
-            <a href="../index.html">
-              トップに戻る
-            </a>
-          </li>
-
-          <li>
-            <a href="posts.php">
-              投稿一覧
-            </a>
-          </li>
-
-          <?php if ($isProject): ?>
-            <li>
-              <a href="act_menu.php">
-                活動内容
-              </a>
-            </li>
-          <?php endif; ?>
-        </ul>
-      </nav>
+      <details class="site-navigation" open>
+        <summary class="site-menu-toggle" aria-label="メニュー">
+          <span class="site-menu-icon" aria-hidden="true"></span>
+        </summary>
+        <nav class="header-content" aria-label="メインメニュー">
+          <ul class="header-menu">
+            <li><a href="act_menu.php"<?= $isProject ? ' aria-current="location"' : '' ?>>活動内容</a></li>
+            <li><a href="purpose.html">目的</a></li>
+            <li><a href="regulations.html">活動規定</a></li>
+            <li><a href="join.html">加入方法</a></li>
+            <li><a href="posts.php"<?= !$isProject ? ' aria-current="location"' : '' ?>>投稿一覧</a></li>
+            <li><a href="login.php">ログイン</a></li>
+          </ul>
+        </nav>
+      </details>
+    </header>
+    <div class="page-home-return">
+      <a class="home-return-link" href="../index.html">
+        <span aria-hidden="true">←</span> ホームへ戻る
+      </a>
     </div>
+
+
+
 
     <article class="public-post">
       <?php if ($isProject): ?>
@@ -399,27 +398,5 @@ $shareUrl =
     </script>
   <?php endif; ?>
 
-  <script>
-    function finishLoading() {
-      document.body.classList.remove("loading");
-      document.body.classList.add("loaded");
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener(
-        "DOMContentLoaded",
-        finishLoading,
-        { once: true }
-      );
-    } else {
-      finishLoading();
-    }
-
-    // Xなどの外部通信が止まっても画面を表示する
-    window.setTimeout(
-      finishLoading,
-      3000
-    );
-  </script>
 </body>
 </html>

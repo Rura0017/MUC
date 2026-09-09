@@ -1,0 +1,26 @@
+# 外側Caddyのsite block内へimportする。配置しただけでは有効にならない。
+@mucPrivate path /storage /storage/* /backup /backup/* /include /include/* /tests /tests/* /scripts/*.php /scripts/*.py /README.md /Caddyfile* /nginx-security.conf
+respond @mucPrivate 404
+
+@mucHidden {
+    path_regexp mucHidden (^|/)\.[^/]+
+    not path /.well-known/*
+}
+respond @mucHidden 404
+
+@mucDatabase path_regexp mucDatabase (?i)\.(sqlite(?:-wal|-shm)?|db|sql|bak|old)(/|$)
+respond @mucDatabase 404
+
+@mucUnsafeUpload {
+    path /image/uploads/*
+    not path_regexp mucMedia (?i)^/image/uploads/[a-f0-9]{32}\.(jpg|png|gif|webp|mp4|webm|mov)$
+}
+respond @mucUnsafeUpload 404
+
+header {
+    X-Content-Type-Options nosniff
+    X-Frame-Options DENY
+    Referrer-Policy strict-origin-when-cross-origin
+    Content-Security-Policy "frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+    -Server
+}

@@ -2,7 +2,10 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;display=swap">
+    <link rel="stylesheet" href="../css/main.css?v=20260909-10">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://ousmuc.motti-web.com/pages/purpose.html">
 
@@ -19,32 +22,48 @@
     <meta name="twitter:title" content="MUC 活動目的">
     <meta name="twitter:description" content="MUC 活動目的の紹介">
     <meta name="twitter:image" content="https://ousmuc.motti-web.com/image/ogp.png">
-    <link rel="icon" href="../image/ogp.png" type="image/png">
+    <link rel="icon" href="../image/favicon.png" type="image/png">
+  <script src="../scripts/navigation.js?v=20260906-2" defer></script>
 </head>
-<body class="loading">
+<body>
     <div class="site-wrapper">
-      <b>活動のきっかけ/目的</b>
+    <header class="site-header">
+      <div class="mbody">
+        <h1>MUC<br>目的</h1>
+      </div>
+      <details class="site-navigation" open>
+        <summary class="site-menu-toggle" aria-label="メニュー">
+          <span class="site-menu-icon" aria-hidden="true"></span>
+        </summary>
+        <nav class="header-content" aria-label="メインメニュー">
+          <ul class="header-menu">
+            <li><a href="act_menu.php">活動内容</a></li>
+            <li><a href="purpose.html" aria-current="page">目的</a></li>
+            <li><a href="regulations.html">活動規定</a></li>
+            <li><a href="join.html">加入方法</a></li>
+            <li><a href="posts.php">投稿一覧</a></li>
+            <li><a href="login.php">ログイン</a></li>
+          </ul>
+        </nav>
+      </details>
+    </header>
+    <div class="page-home-return">
+      <a class="home-return-link" href="../index.html">
+        <span aria-hidden="true">←</span> ホームへ戻る
+      </a>
+    </div>
         <div class="sentence">
             <p class="normal">
-                ・弊学情報理工学科3年生の深夜テンションで始まった非公認サークル<br>
-                ・くだらないアイデアをメンバーと一緒におもしろおかしく実行してみるサークルです！
+                ・大学生活を振り返る中で生まれた未練から思い立って出来たサークル！<br>
+                ・楽しそうな企画をメンバーで出し合い、活動を通して実行することで何か思い出を残そうというコンセプトで活動しています♪ <br>
+                ・気軽に参加できることをモットーにしていますので、少しでも気になるようであればご参加ください！！
             </p>
         </div>
-        <div class="header-content">
-            <ul class="header-menu">
-                <li><a href="../index.html">トップに戻る</a></li>
-            </ul>
-        </div>
+
     </div>
     <div class="link-wrapper">
         <a class="insta-link" href="https://www.instagram.com/ous_muc" target="_blank" rel="noopener noreferrer">Instagram</a>
         <a class="x-link" href="https://x.com/ous_nannkasy0" target="_blank" rel="noopener noreferrer">X.com</a>
     </div>
-    <script>
-        window.addEventListener("load", function () {
-        document.body.classList.remove("loading");
-        document.body.classList.add("loaded");
-        });
-    </script>
 </body> 
 </html>

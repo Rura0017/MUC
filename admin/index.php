@@ -33,14 +33,19 @@ $posts = $pdo
 
 $created = isset($_GET['created']);
 $deleted = isset($_GET['deleted']);
+$passwordChangeResult = $_SESSION['password_change_result'] ?? null;
+unset($_SESSION['password_change_result']);
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;display=swap">
 
-  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/main.css?v=20260909-10">
 
   <meta
     name="viewport"
@@ -51,16 +56,12 @@ $deleted = isset($_GET['deleted']);
 
   <link
     rel="icon"
-    href="../image/ogp.png"
+    href="../image/favicon.png"
     type="image/png"
   >
 </head>
 
-<body class="loading">
-  <div id="loading-screen">
-    読み込み中...
-  </div>
-
+<body>
   <div class="site-wrapper">
     <div class="mbody">
       <h1>
@@ -72,6 +73,7 @@ $deleted = isset($_GET['deleted']);
     <div class="under-title">
       <nav class="header-content">
         <ul class="header-menu">
+          <li><a href="index.php" aria-current="page">管理画面</a></li>
           <li>
             <a href="../index.html">
               トップページ
@@ -120,6 +122,40 @@ $deleted = isset($_GET['deleted']);
         内容を削除しました。
       </p>
     <?php endif; ?>
+
+    <details id="password-settings" class="password-settings" <?= $passwordChangeResult !== null ? 'open' : '' ?>>
+      <summary>パスワードを変更</summary>
+      <div class="password-settings-content">
+        <?php if ($passwordChangeResult !== null): ?>
+          <p class="<?= $passwordChangeResult['success'] ? 'admin-success' : 'login-error' ?>"
+             role="<?= $passwordChangeResult['success'] ? 'status' : 'alert' ?>">
+            <?= htmlspecialchars($passwordChangeResult['message'], ENT_QUOTES, 'UTF-8') ?>
+          </p>
+        <?php endif; ?>
+        <p class="password-settings-help">現在のパスワードを確認してから、新しいパスワードに更新します。</p>
+        <form class="login-form" method="POST" action="change_password.php">
+          <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrfToken(), ENT_QUOTES, 'UTF-8') ?>">
+          <input type="hidden" name="username" autocomplete="username"
+                 value="<?= htmlspecialchars($_SESSION['admin_username'], ENT_QUOTES, 'UTF-8') ?>">
+          <div class="login-field">
+            <label for="current-password">現在のパスワード</label>
+            <input id="current-password" type="password" name="current_password" autocomplete="current-password" required>
+          </div>
+          <div class="login-field">
+            <label for="new-password">新しいパスワード</label>
+            <input id="new-password" type="password" name="new_password" autocomplete="new-password"
+                   minlength="12" maxlength="72" aria-describedby="password-requirements" required>
+            <p id="password-requirements" class="password-settings-help">12文字以上。上限は半角英数字で72文字、日本語は目安として24文字です。</p>
+          </div>
+          <div class="login-field">
+            <label for="confirm-password">新しいパスワード（確認）</label>
+            <input id="confirm-password" type="password" name="confirm_password" autocomplete="new-password"
+                   minlength="12" maxlength="72" required>
+          </div>
+          <button class="password-change-button" type="submit">パスワードを更新</button>
+        </form>
+      </div>
+    </details>
 
     <section class="post-management">
       <div class="post-management-title">
@@ -254,11 +290,5 @@ $deleted = isset($_GET['deleted']);
       </form>
     </div>
   </div>
-  <script>
-    window.addEventListener("load", function () {
-      document.body.classList.remove("loading");
-      document.body.classList.add("loaded");
-    });
-  </script>
 </body>
 </html>

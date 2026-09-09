@@ -24,12 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit('不正なリクエストです。');
     }
 
-    $title = trim($_POST['title'] ?? '');
-    $body = trim((string) ($_POST['body'] ?? ''));
-    $bodyFormat = (string) (
-        $_POST['body_format'] ?? POST_BODY_FORMAT_PLAIN
-    );
-    $postType = (string) ($_POST['post_type'] ?? 'post');
+    $title = trim(postString('title'));
+    $body = trim(postString('body'));
+    $bodyFormat = postString('body_format', POST_BODY_FORMAT_PLAIN);
+    $postType = postString('post_type', 'post');
 
     if (!in_array(
         $bodyFormat,
@@ -209,8 +207,11 @@ $fallbackBody = postBodyPlainText($body, $bodyFormat);
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;display=swap">
 
-  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/main.css?v=20260909-10">
 
   <link
     rel="stylesheet"
@@ -226,16 +227,12 @@ $fallbackBody = postBodyPlainText($body, $bodyFormat);
 
   <link
     rel="icon"
-    href="../image/ogp.png"
+    href="../image/favicon.png"
     type="image/png"
   >
 </head>
 
-<body class="loading">
-  <div id="loading-screen">
-    読み込み中...
-  </div>
-
+<body>
   <div class="site-wrapper">
     <div class="mbody">
       <h1>新規作成</h1>
@@ -244,6 +241,7 @@ $fallbackBody = postBodyPlainText($body, $bodyFormat);
     <div class="under-title">
       <nav class="header-content">
         <ul class="header-menu">
+          <li><a href="create_post.php" aria-current="page">新規作成</a></li>
           <li>
             <a href="index.php">
               管理画面に戻る
@@ -539,14 +537,29 @@ $fallbackBody = postBodyPlainText($body, $bodyFormat);
         );
       }
 
+      let isComposing = false;
+
       function syncEditorPlaceholder() {
+        // IMEの未確定文字はQuillの本文データにまだ反映されないため、
+        // 入力中のDOMを使って案内文の表示だけを更新する。
         const isEmpty =
-          quill.getText().trim() === ""
-          && imageCount() === 0;
+          !isComposing
+          && quill.root.textContent.trim() === ""
+          && !quill.root.querySelector("img");
 
         quill.root.classList.toggle("ql-blank", isEmpty);
       }
 
+      quill.root.addEventListener("compositionstart", function () {
+        isComposing = true;
+        syncEditorPlaceholder();
+      });
+      quill.root.addEventListener("compositionend", function () {
+        isComposing = false;
+        // 変換確定・取り消し後のDOMとQuillの更新を待って再判定する。
+        queueMicrotask(syncEditorPlaceholder);
+      });
+      quill.root.addEventListener("input", syncEditorPlaceholder);
       quill.on("text-change", syncEditorPlaceholder);
       syncEditorPlaceholder();
 
@@ -716,10 +729,6 @@ $fallbackBody = postBodyPlainText($body, $bodyFormat);
       });
     }());
 
-    window.addEventListener("load", function () {
-      document.body.classList.remove("loading");
-      document.body.classList.add("loaded");
-    });
   </script>
 </body>
 </html>

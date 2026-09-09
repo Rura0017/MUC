@@ -72,11 +72,21 @@ function postAttachmentUploadErrorMessage(int $errorCode): string
 
 function detectPostAttachmentMimeType(string $path): ?string
 {
+    $image = @getimagesize($path);
+    if (is_array($image) && isset(postAttachmentTypes()[$image['mime'] ?? ''])) {
+        // 極端に大きな画像や壊れた画像ヘッダーを受け付けない。
+        if ($image[0] < 1 || $image[1] < 1 || $image[0] > 12000 || $image[1] > 12000
+            || $image[0] * $image[1] > 40000000) {
+            return null;
+        }
+        return $image['mime'];
+    }
+
     if (class_exists('finfo')) {
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $detected = $finfo->file($path);
 
-        if (is_string($detected) && isset(postAttachmentTypes()[$detected])) {
+        if (is_string($detected) && (postAttachmentTypes()[$detected]['kind'] ?? null) === 'video') {
             return $detected;
         }
     }
@@ -92,28 +102,6 @@ function detectPostAttachmentMimeType(string $path): ?string
 
     if (!is_string($header)) {
         return null;
-    }
-
-    if (str_starts_with($header, "\xff\xd8\xff")) {
-        return 'image/jpeg';
-    }
-
-    if (str_starts_with($header, "\x89PNG\x0d\x0a\x1a\x0a")) {
-        return 'image/png';
-    }
-
-    if (
-        str_starts_with($header, 'GIF87a')
-        || str_starts_with($header, 'GIF89a')
-    ) {
-        return 'image/gif';
-    }
-
-    if (
-        str_starts_with($header, 'RIFF')
-        && substr($header, 8, 4) === 'WEBP'
-    ) {
-        return 'image/webp';
     }
 
     if (str_starts_with($header, "\x1a\x45\xdf\xa3")) {
@@ -167,6 +155,12 @@ function collectPostAttachments(
     $totalSize = 0;
 
     foreach ($errors as $index => $errorCode) {
+        if (!is_int($errorCode)
+            || !is_string($files['tmp_name'][$index] ?? null)
+            || !is_string($files['name'][$index] ?? null)
+            || !is_int($files['size'][$index] ?? null)) {
+            throw new RuntimeException('添付ファイルの形式が正しくありません。');
+        }
         $errorCode = (int) $errorCode;
 
         if ($errorCode === UPLOAD_ERR_NO_FILE) {
@@ -186,7 +180,6 @@ function collectPostAttachments(
         }
 
         $tmpName = (string) ($files['tmp_name'][$index] ?? '');
-        $size = (int) ($files['size'][$index] ?? 0);
 
         if (!is_uploaded_file($tmpName)) {
             throw new RuntimeException(
@@ -194,7 +187,9 @@ function collectPostAttachments(
             );
         }
 
-        if ($size < 1 || $size > POST_ATTACHMENT_MAX_FILE_SIZE) {
+        $size = filesize($tmpName);
+
+        if ($size === false || $size < 1 || $size > POST_ATTACHMENT_MAX_FILE_SIZE) {
             throw new RuntimeException(
                 '添付ファイルは1件25MB以下にしてください。'
             );
@@ -211,7 +206,7 @@ function collectPostAttachments(
         $mimeType = detectPostAttachmentMimeType($tmpName);
         $types = postAttachmentTypes();
 
-        if ($mimeType === false || !isset($types[$mimeType])) {
+        if ($mimeType === null || !isset($types[$mimeType])) {
             throw new RuntimeException(
                 'JPEG・PNG・GIF・WebP・MP4・WebM・MOV形式のファイルを選択してください。'
             );

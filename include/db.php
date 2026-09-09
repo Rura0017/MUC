@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/security.php';
+
 /**
  * SQLiteデータベースへ接続する関数
  */
@@ -15,7 +17,12 @@ function db(): PDO
     }
 
     // includeフォルダの1つ上にあるstorageを指定
-    $databasePath = dirname(__DIR__) . '/storage/muc.sqlite';
+    // 本番では公開ディレクトリ外の絶対パスを指定できる。
+    // 既存DBの自動移動や新規DBへの切り替えは行わない。
+    $databasePath = getenv('MUC_DATABASE_PATH') ?: dirname(__DIR__) . '/storage/muc.sqlite';
+    if (getenv('MUC_DATABASE_PATH') && !is_file($databasePath)) {
+        throw new RuntimeException('Configured database does not exist.');
+    }
 
     // SQLiteへ接続する
     $pdo = new PDO('sqlite:' . $databasePath);
@@ -34,6 +41,15 @@ function db(): PDO
 
     // 外部キー制約を有効にする
     $pdo->exec('PRAGMA foreign_keys = ON');
+    $pdo->exec('PRAGMA busy_timeout = 5000');
+
+    $pdo->exec(
+        'CREATE TABLE IF NOT EXISTS login_attempts (
+            bucket TEXT PRIMARY KEY,
+            attempts INTEGER NOT NULL,
+            expires_at INTEGER NOT NULL
+        )'
+    );
 
     // 管理者アカウント用テーブル
     $pdo->exec(

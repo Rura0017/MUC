@@ -2,7 +2,10 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;display=swap">
+    <link rel="stylesheet" href="../css/main.css?v=20260909-10">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://ousmuc.motti-web.com/pages/join.html">
     <title>サークル加入について</title>
@@ -18,38 +21,54 @@
     <meta name="twitter:title" content="MUC 参加方法">
     <meta name="twitter:description" content="サークル参加方法の紹介">
     <meta name="twitter:image" content="https://ousmuc.motti-web.com/image/ogp.png">
-    <link rel="icon" href="../image/ogp.png" type="image/png">
+    <link rel="icon" href="../image/favicon.png" type="image/png">
+  <script src="../scripts/navigation.js?v=20260906-2" defer></script>
 </head>
 
-<body class="loading">
+<body>
     <div class="site-wrapper">
-        <b>サークル加入について</b>
+    <header class="site-header">
+      <div class="mbody">
+        <h1>MUC<br>加入方法</h1>
+      </div>
+      <details class="site-navigation" open>
+        <summary class="site-menu-toggle" aria-label="メニュー">
+          <span class="site-menu-icon" aria-hidden="true"></span>
+        </summary>
+        <nav class="header-content" aria-label="メインメニュー">
+          <ul class="header-menu">
+            <li><a href="act_menu.php">活動内容</a></li>
+            <li><a href="purpose.html">目的</a></li>
+            <li><a href="regulations.html">活動規定</a></li>
+            <li><a href="join.html" aria-current="page">加入方法</a></li>
+            <li><a href="posts.php">投稿一覧</a></li>
+            <li><a href="login.php">ログイン</a></li>
+          </ul>
+        </nav>
+      </details>
+    </header>
+    <div class="page-home-return">
+      <a class="home-return-link" href="../index.html">
+        <span aria-hidden="true">←</span> ホームへ戻る
+      </a>
+    </div>
         <div class="sentence">
             <p class="normal">
-                サークル加入には、下記リンクからメールを送信してください。
+                サークル加入には、下記リンクからメールを送信してください！<br>
             </p>
         <a id="joinmail" href="mailto:ousmuc@gmail.com?subject=MUC加入希望のご連絡&body=こんにちは。岡山理科大学のXX(ハンドルネームを入力)です。%0AMUCへの入会を希望します。">
-            入会希望メールを送る
+            ▸入会希望メールを送る <br>
         </a>
-        <p class="small">
-            ※フォーマットに不備があった場合、返信がこない場合があります。
-        </p>
+        <b>
+            ※※返信が迷惑メールフォルダに入る場合がありますので、ご確認よろしくお願いします※※ <br>
+        </b>
+
         </div>
-        <div class="header-content">
-            <ul class="header-menu">
-                <li><a href="../index.html">トップに戻る</a></li>
-            </ul>
-        </div>
+
     </div>
   <div class="link-wrapper">
     <a class="insta-link" href="https://www.instagram.com/ous_muc" target="_blank" rel="noopener noreferrer">Instagram</a>
     <a class="x-link" href="https://x.com/ous_nannkasy0" target="_blank" rel="noopener noreferrer">X.com</a>
   </div>
-    <script>
-    window.addEventListener("load", function () {
-      document.body.classList.remove("loading");
-      document.body.classList.add("loaded");
-    });
-    </script>
 </body>
 </html>

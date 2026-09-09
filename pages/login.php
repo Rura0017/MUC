@@ -4,62 +4,79 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../include/db.php';
 require_once __DIR__ . '/../include/auth.php';
+require_once __DIR__ . '/../include/csrf.php';
+require_once __DIR__ . '/../include/login_security.php';
 
 startSession();
 
 $error = '';
+$username = '';
 
 // すでにログイン済みなら管理画面へ移動
-if (isset($_SESSION['admin_id'])) {
+if (isAdminSessionValid()) {
     header('Location: ../admin/index.php');
     exit;
 }
 
 // フォームが送信された場合
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username'] ?? '');
-    $password = $_POST['password'] ?? '';
+    if (!verifyCsrfToken($_POST['csrf_token'] ?? null)) {
+        http_response_code(403);
+        exit('不正なリクエストです。ページを開き直してください。');
+    }
+    $username = trim(postString('username'));
+    $password = postString('password');
 
-    if ($username === '' || $password === '') {
+    if ($username === '' || $password === '' || strlen($username) > 255 || strlen($password) > 4096 || str_contains($password, "\0")) {
         $error = 'アカウント名とパスワードを入力してください。';
     } else {
         $pdo = db();
+        // Forwardedヘッダーはクライアントが偽造できるので利用しない。
+        $retryAfter = reserveLoginAttempt($pdo, $username, $_SERVER['REMOTE_ADDR'] ?? 'unknown');
+        if ($retryAfter > 0) {
+            http_response_code(429);
+            header('Retry-After: ' . $retryAfter);
+            $error = 'ログインの試行回数が上限に達しました。しばらく待ってから再度お試しください。';
+        } else {
 
-        $stmt = $pdo->prepare(
-            '
-            SELECT
-                id,
-                username,
-                password_hash
-            FROM admins
-            WHERE username = :username
-            '
-        );
+            $stmt = $pdo->prepare(
+                '
+                SELECT
+                    id,
+                    username,
+                    password_hash
+                FROM admins
+                WHERE username = :username
+                '
+            );
 
-        $stmt->execute([
-            ':username' => $username,
-        ]);
+            $stmt->execute([
+                ':username' => $username,
+            ]);
 
-        $admin = $stmt->fetch();
+            $admin = $stmt->fetch();
 
-        if (
-            $admin !== false
-            && password_verify(
-                $password,
-                $admin['password_hash']
-            )
-        ) {
-            // ログイン成功時にセッションIDを作り直す
-            session_regenerate_id(true);
+            // 存在しないユーザーでもハッシュ照合を行い、応答時間の差を小さくする。
+            $hash = $admin['password_hash'] ?? '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.';
+            $passwordMatches = password_verify($password, $hash);
+            if ($admin !== false && $passwordMatches) {
+                clearLoginAccountAttempts($pdo, $username);
+                // ログイン成功時にセッションIDを作り直す
+                session_regenerate_id(true);
+                $_SESSION = [];
 
-            $_SESSION['admin_id'] = (int) $admin['id'];
-            $_SESSION['admin_username'] = $admin['username'];
+                $_SESSION['admin_id'] = (int) $admin['id'];
+                $_SESSION['admin_username'] = $admin['username'];
+                $_SESSION['admin_authenticated_at'] = time();
+                $_SESSION['admin_last_activity'] = time();
+                $_SESSION['admin_password_version'] = hash('sha256', $admin['password_hash']);
 
-            header('Location: ../admin/index.php');
-            exit;
+                header('Location: ../admin/index.php');
+                exit;
+            }
+
+            $error = 'アカウント名またはパスワードが違います。';
         }
-
-        $error = 'アカウント名またはパスワードが違います。';
     }
 }
 ?>
@@ -68,11 +85,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;display=swap">
 
     <!-- CSS読み込み -->
     <link
         rel="stylesheet"
-        href="../css/main.css"
+        href="../css/main.css?v=20260909-10"
     >
 
     <!-- スマホ対応 -->
@@ -85,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <link
         rel="icon"
-        href="../image/ogp.png"
+        href="../image/favicon.png"
         type="image/png"
     >
 
@@ -132,32 +152,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         name="twitter:image"
         content="https://ousmuc.motti-web.com/image/ogp.png"
     >
+  <script src="../scripts/navigation.js?v=20260906-2" defer></script>
 </head>
 
-<body class="loading">
-    <div id="loading-screen">
-        読み込み中...
-    </div>
-
+<body>
     <div class="site-wrapper">
-        <div class="mbody">
+    <header class="site-header">
+      <div class="mbody">
             <h1>
                 管理者<br>
                 ログイン
             </h1>
         </div>
+      <details class="site-navigation" open>
+        <summary class="site-menu-toggle" aria-label="メニュー">
+          <span class="site-menu-icon" aria-hidden="true"></span>
+        </summary>
+        <nav class="header-content" aria-label="メインメニュー">
+          <ul class="header-menu">
+            <li><a href="act_menu.php">活動内容</a></li>
+            <li><a href="purpose.html">目的</a></li>
+            <li><a href="regulations.html">活動規定</a></li>
+            <li><a href="join.html">加入方法</a></li>
+            <li><a href="posts.php">投稿一覧</a></li>
+            <li><a href="login.php" aria-current="page">ログイン</a></li>
+          </ul>
+        </nav>
+      </details>
+    </header>
+    <div class="page-home-return">
+      <a class="home-return-link" href="../index.html">
+        <span aria-hidden="true">←</span> ホームへ戻る
+      </a>
+    </div>
 
-        <div class="under-title">
-            <nav class="header-content">
-                <ul class="header-menu">
-                    <li>
-                        <a href="../index.html">
-                            トップに戻る
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+
+
 
         <div class="login-area">
             <h2>管理者ログイン</h2>
@@ -182,6 +212,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     method="POST"
                     action="login.php"
                 >
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrfToken(), ENT_QUOTES, 'UTF-8') ?>">
                     <div class="login-field">
                         <label for="signin-id">
                             アカウント名
@@ -192,7 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             name="username"
                             type="text"
                             value="<?= htmlspecialchars(
-                                $_POST['username'] ?? '',
+                                $username,
                                 ENT_QUOTES,
                                 'UTF-8'
                             ) ?>"
@@ -246,11 +277,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </a>
     </div>
 
-    <script>
-        window.addEventListener("load", function () {
-            document.body.classList.remove("loading");
-            document.body.classList.add("loaded");
-        });
-    </script>
 </body>
 </html>

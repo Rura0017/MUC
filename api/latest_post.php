@@ -17,7 +17,7 @@ require_once __DIR__ . '/../include/post_attachments.php';
 /**
  * SQLiteの日時を日本時間の表示用文字列へ変換する。
  */
-function formatPostDate(string $createdAt): string
+function formatPostDate(string $createdAt, string $format = 'Y/m/d H:i'): string
 {
     try {
         $date = new DateTime(
@@ -29,7 +29,7 @@ function formatPostDate(string $createdAt): string
             new DateTimeZone('Asia/Tokyo')
         );
 
-        return $date->format('Y/m/d H:i');
+        return $date->format($format);
     } catch (Exception) {
         return $createdAt;
     }
@@ -38,7 +38,7 @@ function formatPostDate(string $createdAt): string
 try {
     $pdo = db();
 
-    $post = $pdo
+    $posts = $pdo
         ->query(
             '
             SELECT
@@ -50,21 +50,58 @@ try {
             FROM posts
             WHERE post_type = \'post\'
             ORDER BY id DESC
-            LIMIT 1
+            LIMIT 3
             '
         )
-        ->fetch();
+        ->fetchAll();
 
-    if ($post === false) {
+    if ($posts === []) {
         echo json_encode(
             [
                 'post' => null,
+                'previews' => [],
             ],
             JSON_UNESCAPED_UNICODE
             | JSON_UNESCAPED_SLASHES
             | JSON_THROW_ON_ERROR
         );
 
+        exit;
+    }
+
+    $post = $posts[0];
+
+    $previews = [];
+
+    foreach ($posts as $previewPost) {
+        // 本文から文字だけを取り出し、改行や連続した空白を整える。
+        $excerpt = trim(preg_replace(
+            '/\s+/u',
+            ' ',
+            postBodyPlainText($previewPost['body'], $previewPost['body_format'])
+        ) ?? '');
+
+        $previews[] = [
+            'id' => (int) $previewPost['id'],
+            'title' => $previewPost['title'],
+            'excerpt' => mb_substr($excerpt, 0, 240, 'UTF-8'),
+            'created_at' => formatPostDate(
+                $previewPost['created_at']
+            ),
+            'created_at_iso' => formatPostDate(
+                $previewPost['created_at'], DATE_ATOM
+            ),
+        ];
+    }
+
+    // ホームの紹介欄では、本文全体や添付画像を読み込まない。
+    if (($_GET['previews'] ?? '') === '1') {
+        echo json_encode(
+            ['previews' => $previews],
+            JSON_UNESCAPED_UNICODE
+            | JSON_UNESCAPED_SLASHES
+            | JSON_THROW_ON_ERROR
+        );
         exit;
     }
 
@@ -75,6 +112,7 @@ try {
 
     echo json_encode(
         [
+            'previews' => $previews,
             'post' => [
                 'id' => (int) $post['id'],
                 'title' => $post['title'],

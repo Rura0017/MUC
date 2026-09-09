@@ -53,7 +53,10 @@ $projects = $pdo
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="../css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;display=swap">
+  <link rel="stylesheet" href="../css/main.css?v=20260909-10">
   <link
     rel="canonical"
     href="https://ousmuc.motti-web.com/pages/act_menu.php"
@@ -92,25 +95,38 @@ $projects = $pdo
     content="https://ousmuc.motti-web.com/image/ogp.png"
   >
 
-  <link rel="icon" href="../image/ogp.png" type="image/png">
+  <link rel="icon" href="../image/favicon.png" type="image/png">
+  <script src="../scripts/navigation.js?v=20260906-2" defer></script>
 </head>
 
-<body class="loading">
-  <div id="loading-screen">読み込み中...</div>
+<body>
 
   <div class="site-wrapper">
-    <div class="mbody">
-      <h1>MUC<br>活動内容</h1>
+    <header class="site-header">
+      <div class="mbody">
+        <h1>MUC<br>活動内容</h1>
+      </div>
+      <details class="site-navigation" open>
+        <summary class="site-menu-toggle" aria-label="メニュー">
+          <span class="site-menu-icon" aria-hidden="true"></span>
+        </summary>
+        <nav class="header-content" aria-label="メインメニュー">
+          <ul class="header-menu">
+            <li><a href="act_menu.php" aria-current="page">活動内容</a></li>
+            <li><a href="purpose.html">目的</a></li>
+            <li><a href="regulations.html">活動規定</a></li>
+            <li><a href="join.html">加入方法</a></li>
+            <li><a href="posts.php">投稿一覧</a></li>
+            <li><a href="login.php">ログイン</a></li>
+          </ul>
+        </nav>
+      </details>
+    </header>
+    <div class="page-home-return">
+      <a class="home-return-link" href="../index.html">
+        <span aria-hidden="true">←</span> ホームへ戻る
+      </a>
     </div>
-
-    <nav class="header-content">
-      <ul class="header-menu">
-        <li><a href="../index.html">トップ</a></li>
-        <li><a href="join.html">加入方法</a></li>
-        <li><a href="regulations.html">活動規定</a></li>
-        <li><a href="posts.php">投稿一覧</a></li>
-      </ul>
-    </nav>
 
     <div class="member-row">
       <b>このページについて：</b>
@@ -261,23 +277,5 @@ $projects = $pdo
     </script>
   <?php endif; ?>
 
-  <script>
-    function finishLoading() {
-      document.body.classList.remove("loading");
-      document.body.classList.add("loaded");
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener(
-        "DOMContentLoaded",
-        finishLoading,
-        { once: true }
-      );
-    } else {
-      finishLoading();
-    }
-
-    window.setTimeout(finishLoading, 3000);
-  </script>
 </body>
 </html>

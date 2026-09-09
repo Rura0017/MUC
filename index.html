@@ -2,8 +2,11 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;family=Zen+Maru+Gothic:wght@400;500&amp;display=swap">
 
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/main.css?v=20260909-60">
   <link rel="canonical" href="https://ousmuc.motti-web.com/">
 
   <meta
@@ -15,7 +18,7 @@
 
   <link
     rel="icon"
-    href="./image/ogp.png"
+    href="./image/favicon.png"
     type="image/png"
   >
 
@@ -60,103 +63,253 @@
     name="twitter:image"
     content="https://ousmuc.motti-web.com/image/ogp.png"
   >
+  <script src="scripts/navigation.js?v=20260906-2" defer></script>
+  <script src="scripts/news-rotator.js?v=20260908-3" defer></script>
 </head>
 
-<body class="loading">
-  <div id="loading-screen">
-    読み込み中...
-  </div>
-
-  <div class="site-wrapper">
-    <div class="mbody">
-      <h1>
-        岡山理科大学<br>
-        なんかしましょう<br>
-        非公認サークル
-      </h1>
-    </div>
-
-    <div class="under-title">
-      <nav class="header-content">
-        <ul class="header-menu">
-          <li><a href="./pages/act_menu.php">活動内容</a></li>
-          <li><a href="./pages/purpose.html">目的</a></li>
-          <li><a href="./pages/regulations.html">活動規定</a></li>
-          <li><a href="./pages/join.html">加入方法</a></li>
-          <li><a href="./pages/login.php">ログイン</a></li>
-        </ul>
-      </nav>
-
-      <div class="member-row">
-        <b>参加者：</b>
-
-        <a
-          href="./pages/join.html"
-          class="blink-link"
-        >
-          ＞＞随時募集中＜＜
-        </a>
-
-        <br>
-
-        <a
-          href="https://x.com/ous_nannkasy0"
-          class="representative"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ＠るら（代表）
-        </a>
-
-        <span class="officer">
-          ＠にくにくにくバーガー
-        </span>
-
-        <span class="officer">
-          ＠えるむ
-        </span>
-
-        <span class="member">
-          ＠かずき
-        </span>
-
-        <span class="member">
-          ＠あきじゅ
-        </span>
-
-        <span class="member">
-          ＠ヒロタク
-        </span>
-      </div>
-    </div>
-
-    <div class="home-panels">
-      <section class="home-panel latest-post">
-        <h2>最新の投稿</h2>
-
-        <!-- APIから最新投稿を全文取得して、ここへ表示する -->
-        <div id="latest-post-container">
-          <div class="latest-post-card">
-            <p>最新の投稿を読み込んでいます。</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="home-panel home-news">
-        <h2>お知らせ</h2>
-
-        <div class="newsbox">
-          <ul>
-            <li>9/5 【v2.0β】大幅な更新を行いました.</li>
-            <li>7/24 【v1.0】大幅な更新を行いました.</li>
-            <li>5/18 サーバーの移行を行いました.</li>
-            <li>4/13 初メンバー加入を記念して「年中行事をやってみようの会」が始動しました.</li>
-            <li>4/5 HPのURLが更新されました.</li>
-            <li>2026/03/15 サイトを公開しました.</li>
+<body>
+  <div class="site-wrapper home-page" id="page-top">
+    <header class="site-header home-site-header">
+      <details class="site-navigation" open>
+        <summary class="site-menu-toggle" aria-label="メニュー">
+          <span class="site-menu-icon" aria-hidden="true"></span>
+        </summary>
+        <nav class="header-content" aria-label="メインメニュー">
+          <ul class="header-menu">
+            <li><a href="./pages/act_menu.php">活動内容</a></li>
+            <li><a href="./pages/purpose.html">目的</a></li>
+            <li><a href="./pages/regulations.html">活動規定</a></li>
+            <li><a href="./pages/join.html">加入方法</a></li>
+            <li><a href="./pages/posts.php">投稿一覧</a></li>
+            <li><a href="./pages/login.php">ログイン</a></li>
           </ul>
-        </div>
-      </section>
+        </nav>
+      </details>
+      <div class="mbody">
+        <h1>
+          <span class="home-title-university">岡山理科大学</span><br>
+          なんかしましょう<br>
+          非公認サークル
+        </h1>
+      </div>
+    </header>
+
+    <details class="home-news">
+      <summary>
+        <span class="home-news-viewport">
+          <span class="home-news-slide home-news-slide-latest">
+            <span class="home-news-label">お知らせ</span>
+            <span class="home-news-latest">最新のお知らせを見る</span>
+          </span>
+          <span class="home-news-slide home-news-slide-recruitment" aria-hidden="true" hidden>
+            <a class="home-news-recruitment" href="./pages/join.html" tabindex="-1">メンバー絶賛募集中！</a>
+          </span>
+        </span>
+        <button class="home-news-pause" type="button" aria-label="自動切り替えを停止" aria-pressed="false" hidden>
+          <span aria-hidden="true"></span>
+        </button>
+      </summary>
+      <div class="newsbox">
+        <ul>
+          <!-- お知らせは新しいものを先頭に追加。閉じた欄には、この最初の1件が自動で表示されます。 -->
+          <li><time datetime="2026-09-05">9/5</time> <span>【v2.0β】大幅な更新を行いました.</span></li>
+          <li>7/24 【v1.0】大幅な更新を行いました.</li>
+          <li>5/18 サーバーの移行を行いました.</li>
+          <li>4/13 初メンバー加入を記念して「年中行事をやってみようの会」が始動しました.</li>
+          <li>4/5 HPのURLが更新されました.</li>
+          <li>2026/03/15 サイトを公開しました.</li>
+        </ul>
+      </div>
+    </details>
+
+    <section class="home-recent-posts" aria-labelledby="recent-posts-title">
+      <div class="home-recent-posts-heading">
+        <h2 id="recent-posts-title">最近の投稿</h2>
+        <a href="./pages/posts.php">一覧を見る <span aria-hidden="true">→</span></a>
+      </div>
+      <p class="home-posts-status" id="recent-posts-status" role="status">
+        表示サンプル
+      </p>
+      <ul class="home-posts-track" id="recent-post-previews" aria-label="最近の投稿" data-sample-posts="true">
+        <li class="home-post-card">
+          <article class="home-post-link">
+            <time datetime="2026-09-09">2026/09/09</time>
+            <h3>マイクラで、大学をつくってみよう。</h3>
+            <p class="home-post-excerpt">いつも通っている校舎も、ブロックでつくると意外と難しい。建物の形を観察したり、写真を持ち寄ったりしながら、マインクラフトの中に私たちのキャンパスを再現していく企画です。建築が得意な人も、ちょっと覗いてみたい人も、一緒に遊びながら少しずつ形にしていきましょう。</p>
+            <span class="home-post-more">サンプル記事</span>
+          </article>
+        </li>
+        <li class="home-post-card">
+          <article class="home-post-link">
+            <time datetime="2026-09-08">2026/09/08</time>
+            <h3>いつもの道を、ちょっと寄り道。</h3>
+            <p class="home-post-excerpt">授業へ向かうときには通らない道に、いい景色や落ち着く場所があるかもしれません。学内をのんびり歩いて、おすすめのお散歩コースを考える企画です。木陰のベンチ、眺めのいい階段、気になる小道。見つけた場所を地図に書き込んで、自分たちなりの大学案内をつくってみませんか。</p>
+            <span class="home-post-more">サンプル記事</span>
+          </article>
+        </li>
+        <li class="home-post-card">
+          <article class="home-post-link">
+            <time datetime="2026-09-07">2026/09/07</time>
+            <h3>「それ、やってみたい」を持ち寄ろう。</h3>
+            <p class="home-post-excerpt">学内でいちばんおいしい水道水はどこだろう。ゴミ箱の場所を全部集めたら、便利な地図になるだろうか。何気ない疑問や、ふと思いついた遊びが、次の企画の始まりです。まだまとまっていないアイデアでも大歓迎。雑談しながら、面白そうなことを一緒に形にしていきましょう。</p>
+            <span class="home-post-more">サンプル記事</span>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <div class="home-catchcopy">
+      <div class="home-catchcopy-main">
+        <p class="home-catchcopy-text">
+          <span class="home-catchcopy-intro"><span class="home-catchcopy-note">パっと見</span>価値がなさそうな</span>
+          <span>エンターテインメントを</span>
+          <span class="home-catchcopy-ending"><strong>創造する</strong></span>
+        </p>
+      </div>
+
+      <figure class="home-message">
+        <blockquote class="home-message-quote">
+          <p>我々は、一見価値のなさそうなことにも価値を見出し、アソビを軸に挑戦し続けます。</p>
+        </blockquote>
+        <figcaption class="home-message-author">
+          <strong>N.K</strong>
+          <span>（サークル代表）</span>
+        </figcaption>
+      </figure>
     </div>
+
+    <section class="home-activity" aria-labelledby="minecraft-title">
+      <figure class="minecraft-album">
+        <div class="minecraft-collage">
+          <a
+            class="minecraft-photo minecraft-photo-main"
+            href="./image/minecraft/image1.png"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="海辺の建物の写真を原寸で開く（新しいタブ）"
+          >
+            <picture>
+              <source
+                type="image/webp"
+                srcset="./image/minecraft/image1-640.webp 640w, ./image/minecraft/image1-1120.webp 1120w"
+                sizes="(max-width: 600px) 88vw, (max-width: 900px) 62vw, 540px"
+              >
+              <img
+                src="./image/minecraft/image1-1120.jpg"
+                width="2556"
+                height="1230"
+                alt="マイクラの海辺に建つ、黒い石の大きな建物"
+                loading="lazy"
+                decoding="async"
+              >
+            </picture>
+          </a>
+
+          <a
+            class="minecraft-photo minecraft-photo-tower"
+            href="./image/minecraft/image2.png"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="高い建築物の写真を原寸で開く（新しいタブ）"
+          >
+            <picture>
+              <source
+                type="image/webp"
+                srcset="./image/minecraft/image2-640.webp 640w, ./image/minecraft/image2-1120.webp 1120w"
+                sizes="(max-width: 600px) 38vw, (max-width: 900px) 31vw, 270px"
+              >
+              <img
+                src="./image/minecraft/image2-1120.jpg"
+                width="1167"
+                height="1050"
+                alt="マイクラの地形を見下ろす、高く伸びた大きな建築物"
+                loading="lazy"
+                decoding="async"
+              >
+            </picture>
+          </a>
+
+          <a
+            class="minecraft-photo minecraft-photo-friend"
+            href="./image/minecraft/image0.png"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="つとむの写真を原寸で開く（新しいタブ）"
+          >
+            <picture>
+              <source
+                type="image/webp"
+                srcset="./image/minecraft/image0-640.webp 640w, ./image/minecraft/image0-1120.webp 1120w"
+                sizes="(max-width: 600px) 60vw, (max-width: 900px) 46vw, 400px"
+              >
+              <img
+                src="./image/minecraft/image0-1120.jpg"
+                width="1920"
+                height="1057"
+                alt="マイクラで「つとむ」と名付けられた白いキャラクター"
+                loading="lazy"
+                decoding="async"
+              >
+            </picture>
+          </a>
+        </div>
+        <figcaption class="minecraft-caption">
+          <h2 id="minecraft-title"><span aria-hidden="true">☝</span> 夏休みマイクラ企画</h2>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="home-other-projects" aria-labelledby="other-projects-title">
+      <h2 id="other-projects-title">ほかにも、こんな企画。</h2>
+      <ul>
+        <li><strong>学内お散歩コース作成企画</strong></li>
+        <li><strong>学内うまい水道水を探そうの会（情報処理研究部部長推薦）</strong></li>
+        <li><strong>岡理ゴミ箱マッピング企画</strong></li>
+      </ul>
+      <p class="home-other-projects-more">もちろん、これだけじゃない。</p>
+      <p class="home-other-projects-closing">
+        <strong>あなたのアイデアが、次の企画になる。</strong>
+        <span>思いついたら、まずは一緒にやってみよう。</span>
+      </p>
+    </section>
+
+    <div class="recruitment-direction" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <section class="home-recruitment" aria-labelledby="recruitment-title">
+      <div class="home-recruitment-heading">
+        <p class="recruitment-eyebrow">MENBER METTYA HOSII</p>
+        <h2 id="recruitment-title"><span>メンバー</span><span>募集中！</span></h2>
+      </div>
+      <ul class="home-recruitment-list" aria-label="こんな人が欲しい">
+        <li><strong>アイデア豊富</strong>な人</li>
+        <li>企画した<strong>活動に参加</strong>してみたい人</li>
+        <li>サークルを<strong>成長させたい・運営したい</strong>人</li>
+      </ul>
+      <ul class="home-recruitment-benefits" aria-label="参加について">
+        <li>参加費無料</li>
+        <li>参加自由</li>
+        <li>オンラインコミュニティ有</li>
+      </ul>
+      <a class="recruitment-link" href="./pages/join.html">加入方法を見る</a>
+    </section>
+
+    <footer class="home-footer">
+      <p class="home-footer-name">
+        <img class="home-footer-icon" src="./image/favicon.png" width="64" height="64" alt="" decoding="async">
+        <span>岡山理科大学<br>なんかしましょうサークル</span>
+      </p>
+      <a class="home-footer-top" href="#page-top">先頭へ戻る <span aria-hidden="true">↑</span></a>
+      <p class="home-footer-contact">
+        <span>HPに関する問い合わせ：</span>
+        <span>ousmuc0315@gmail.com</span>
+      </p>
+      <small>© MUC</small>
+    </footer>
+
   </div>
 
   <div class="link-wrapper">
@@ -179,240 +332,6 @@
     </a>
   </div>
 
-  <script>
-    "use strict";
-
-    /**
-     * JavaScriptで文字列をHTMLへ埋め込む際に、
-     * タグとして実行されない安全な文字列へ変換する。
-     */
-    function escapeHtml(value) {
-      const element = document.createElement("div");
-      element.textContent = String(value);
-
-      return element.innerHTML;
-    }
-
-    /**
-     * X公式スクリプトを読み込み、
-     * 本文中のX投稿URLから作られた領域を埋め込み表示へ変換する。
-     */
-    function ensureXWidgets() {
-      const existingScript =
-        document.getElementById("twitter-wjs");
-
-      if (existingScript) {
-        renderXPosts();
-        return;
-      }
-
-      const script = document.createElement("script");
-      script.id = "twitter-wjs";
-      script.src = "https://platform.x.com/widgets.js";
-      script.async = true;
-      script.onload = function () {
-        renderXPosts();
-      };
-
-      document.head.appendChild(script);
-    }
-
-    function renderXPosts(attempt = 0) {
-      if (
-        !window.twttr ||
-        !window.twttr.widgets ||
-        !window.twttr.widgets.createTweet
-      ) {
-        if (attempt < 100) {
-          window.setTimeout(function () {
-            renderXPosts(attempt + 1);
-          }, 100);
-        }
-
-        return;
-      }
-
-      const containers =
-        document.querySelectorAll(
-          ".x-post-embed[data-x-post-id]"
-        );
-
-      containers.forEach(function (container) {
-        if (container.dataset.xLoaded === "true") {
-          return;
-        }
-
-        container.dataset.xLoaded = "true";
-
-        window.twttr.widgets.createTweet(
-          container.dataset.xPostId,
-          container,
-          {
-            align: "center",
-            dnt: true,
-            theme: "light",
-            conversation: "none"
-          }
-        ).then(function (element) {
-          if (!element) {
-            container.dataset.xLoaded = "false";
-            return;
-          }
-
-          const fallback =
-            container.querySelector(
-              ".x-embed-fallback"
-            );
-
-          if (fallback) {
-            fallback.remove();
-          }
-        }).catch(function (error) {
-          container.dataset.xLoaded = "false";
-
-          console.error(
-            "X投稿の埋め込みに失敗しました。",
-            error
-          );
-        });
-      });
-    }
-
-    /**
-     * PHP APIから最新投稿を取得する。
-     * 本文は省略せず、投稿内容を最初からすべて表示する。
-     */
-    async function loadLatestPost() {
-      const container =
-        document.getElementById(
-          "latest-post-container"
-        );
-
-      try {
-        const response = await fetch(
-          "./api/latest_post.php",
-          {
-            headers: {
-              "Accept": "application/json"
-            },
-            cache: "no-store"
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(
-            "最新投稿の取得に失敗しました。"
-          );
-        }
-
-        const data = await response.json();
-
-        if (!data.post) {
-          container.innerHTML = `
-            <div class="latest-post-card">
-              <p>投稿はまだありません。</p>
-
-              <div class="latest-post-actions">
-                <a
-                  class="all-posts-link"
-                  href="./pages/posts.php"
-                >
-                  他の投稿も確認する
-                </a>
-              </div>
-            </div>
-          `;
-
-          return;
-        }
-
-        const post = data.post;
-        const postId = Number(post.id);
-
-        if (!Number.isInteger(postId)) {
-          throw new Error(
-            "投稿IDが正しくありません。"
-          );
-        }
-
-        container.innerHTML = `
-          <article class="latest-post-card">
-            <h3>${escapeHtml(post.title)}</h3>
-
-            <p class="latest-post-date">
-              投稿日：${escapeHtml(post.created_at)}
-            </p>
-
-            <div class="latest-post-body">
-              ${post.body_html}
-            </div>
-
-            ${post.attachments_html || ""}
-
-            <div class="latest-post-actions">
-              <a
-                class="post-detail-link"
-                href="./pages/post.php?id=${postId}"
-              >
-                個別ページを開く
-              </a>
-
-              <a
-                class="all-posts-link"
-                href="./pages/posts.php"
-              >
-                他の投稿も確認する
-              </a>
-            </div>
-          </article>
-        `;
-
-        if (post.contains_x_post) {
-          ensureXWidgets();
-        }
-      } catch (error) {
-        console.error(error);
-
-        container.innerHTML = `
-          <div class="latest-post-card">
-            <p>
-              最新の投稿を読み込めませんでした。
-            </p>
-
-            <div class="latest-post-actions">
-              <a
-                class="all-posts-link"
-                href="./pages/posts.php"
-              >
-                投稿一覧を開く
-              </a>
-            </div>
-          </div>
-        `;
-      }
-    }
-
-    function finishLoading() {
-      document.body.classList.remove("loading");
-      document.body.classList.add("loaded");
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener(
-        "DOMContentLoaded",
-        function () {
-          finishLoading();
-          loadLatestPost();
-        },
-        { once: true }
-      );
-    } else {
-      finishLoading();
-      loadLatestPost();
-    }
-
-    // 外部通信が遅い場合も、ページ本体は必ず表示する。
-    window.setTimeout(finishLoading, 3000);
-  </script>
+  <script src="./scripts/post-previews.js?v=20260909-2" defer></script>
 </body>
 </html>

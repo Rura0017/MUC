@@ -24,13 +24,15 @@ function csrfToken(): string
 /**
  * 送信されたCSRFトークンが正しいか確認する。
  */
-function verifyCsrfToken(?string $token): bool
+function verifyCsrfToken(mixed $token): bool
 {
     startSession();
 
     if (
         !isset($_SESSION['csrf_token'])
+        || !is_string($_SESSION['csrf_token'])
         || !is_string($token)
+        || strlen($token) !== 64
     ) {
         return false;
     }
