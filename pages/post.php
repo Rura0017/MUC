@@ -7,18 +7,6 @@ require_once __DIR__ . '/../include/post_renderer.php';
 require_once __DIR__ . '/../include/post_attachments.php';
 
 /**
- * HTMLとして解釈される特殊文字を無害化する。
- */
-function h(string $value): string
-{
-    return htmlspecialchars(
-        $value,
-        ENT_QUOTES | ENT_SUBSTITUTE,
-        'UTF-8'
-    );
-}
-
-/**
  * SQLiteの日時を日本時間へ変換する。
  */
 function formatPostDate(string $createdAt): string
@@ -152,11 +140,11 @@ $shareUrl =
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title><?= h($post['title']) ?> | MUC</title>
+  <title><?= escapePostHtml($post['title']) ?> | MUC</title>
 
   <link
     rel="canonical"
-    href="<?= h($canonicalUrl) ?>"
+    href="<?= escapePostHtml($canonicalUrl) ?>"
   >
 
   <link
@@ -168,12 +156,12 @@ $shareUrl =
   <!-- Open Graph -->
   <meta
     property="og:title"
-    content="<?= h($post['title']) ?>"
+    content="<?= escapePostHtml($post['title']) ?>"
   >
 
   <meta
     property="og:description"
-    content="<?= h($description) ?>"
+    content="<?= escapePostHtml($description) ?>"
   >
 
   <meta
@@ -183,12 +171,12 @@ $shareUrl =
 
   <meta
     property="og:url"
-    content="<?= h($canonicalUrl) ?>"
+    content="<?= escapePostHtml($canonicalUrl) ?>"
   >
 
   <meta
     property="og:image"
-    content="<?= h($ogImageUrl) ?>"
+    content="<?= escapePostHtml($ogImageUrl) ?>"
   >
 
   <meta
@@ -209,17 +197,17 @@ $shareUrl =
 
   <meta
     name="twitter:title"
-    content="<?= h($post['title']) ?>"
+    content="<?= escapePostHtml($post['title']) ?>"
   >
 
   <meta
     name="twitter:description"
-    content="<?= h($description) ?>"
+    content="<?= escapePostHtml($description) ?>"
   >
 
   <meta
     name="twitter:image"
-    content="<?= h($ogImageUrl) ?>"
+    content="<?= escapePostHtml($ogImageUrl) ?>"
   >
   <script src="../scripts/navigation.js?v=20260910-1" defer></script>
 </head>
@@ -266,12 +254,12 @@ $shareUrl =
       <?php endif; ?>
 
       <h2 id="post-title">
-        <?= h($post['title']) ?>
+        <?= escapePostHtml($post['title']) ?>
       </h2>
 
       <p class="admin-post-date">
         公開日：
-        <?= h(
+        <?= escapePostHtml(
             formatPostDate(
                 $post['created_at']
             )
@@ -291,7 +279,7 @@ $shareUrl =
       <div class="public-post-actions">
         <a
           class="share-button"
-          href="<?= h($shareUrl) ?>"
+          href="<?= escapePostHtml($shareUrl) ?>"
           target="_blank"
           rel="noopener noreferrer"
         >

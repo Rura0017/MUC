@@ -14,13 +14,6 @@
   margin-bottom: 36px;
 }
 
-.home-projects-eyebrow {
-  margin: 0 0 20px;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .08em;
-}
-
 .home-other-projects h2 {
   margin: 0;
   color: inherit;
@@ -35,14 +28,6 @@
   margin-bottom: 4px;
   font-size: .62em;
   font-weight: 500;
-}
-
-.home-projects-intro {
-  margin: 0;
-  padding-bottom: 8px;
-  color: #647780;
-  font-size: 13px;
-  line-height: 1.9;
 }
 
 .home-projects-list {
@@ -91,20 +76,6 @@
   font-weight: 700;
   line-height: 1.65;
   letter-spacing: -.025em;
-}
-
-.home-project-description {
-  margin: 12px 0 0;
-  color: #647780;
-  font-size: 13px;
-  line-height: 1.9;
-}
-
-.home-project-note {
-  margin: 10px 0 0;
-  color: #647780;
-  font-size: 10px;
-  line-height: 1.8;
 }
 
 .home-other-projects-more {
@@ -193,8 +164,6 @@
 
 @media (max-width: 600px) {
   .home-other-projects-heading { display: block; margin-bottom: 28px; }
-  .home-projects-eyebrow { margin-bottom: 16px; font-size: 11px; }
-  .home-projects-intro { margin-top: 18px; padding-bottom: 0; font-size: 12px; }
   .home-projects-list { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .home-projects-list > li {
     display: grid;
@@ -205,8 +174,6 @@
   .home-project-label { grid-area: label; margin-bottom: 14px; }
   .home-project-art { grid-area: art; align-self: center; height: 110px; margin: 0; }
   .home-projects-list h3 { grid-area: title; align-self: end; font-size: 17px; }
-  .home-project-description { grid-area: description; margin-top: 8px; font-size: 12px; }
-  .home-project-note { grid-area: note; font-size: 9px; }
   .home-other-projects-more { margin-top: 32px; font-size: 12px; }
   .home-recruitment {
     flex-direction: column;

@@ -5,15 +5,6 @@ declare(strict_types=1);
 require_once __DIR__ . '/../include/db.php';
 require_once __DIR__ . '/../include/post_renderer.php';
 
-function h(string $value): string
-{
-    return htmlspecialchars(
-        $value,
-        ENT_QUOTES | ENT_SUBSTITUTE,
-        'UTF-8'
-    );
-}
-
 function makeExcerpt(
     string $body,
     string $bodyFormat,
@@ -140,13 +131,13 @@ $posts = db()
 
       <?php foreach ($posts as $post): ?>
         <article class="post-list-card">
-          <h2><?= h($post['title']) ?></h2>
+          <h2><?= escapePostHtml($post['title']) ?></h2>
 
           <p class="admin-post-date">
-            <?= h(formatPostDate($post['created_at'])) ?>
+            <?= escapePostHtml(formatPostDate($post['created_at'])) ?>
           </p>
 
-          <p><?= h(makeExcerpt(
+          <p><?= escapePostHtml(makeExcerpt(
               $post['body'],
               $post['body_format']
           )) ?></p>

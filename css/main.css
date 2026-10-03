@@ -5,7 +5,6 @@
   --blue: #005bac;
   --cyan: #00a0e9;
   --lime: #aacd05;
-  --officer-yellow: #c79200;
   --text: #1f2937;
   --muted: #64748b;
   --page: #f4f8fb;
@@ -444,47 +443,7 @@ body {
 
 .member-row b { margin-right: 8px; }
 
-.representative,
-.officer,
-.member { display: inline-block; }
-
-.representative {
-  color: var(--blue);
-  font-weight: 700;
-}
-
-.officer {
-  color: var(--officer-yellow);
-  font-weight: 700;
-}
-
-.member { color: #3a9700; }
-
-@keyframes blink {
-  50% { opacity: 0.35; }
-}
-
-.blink-link {
-  margin-left: 10px;
-  color: var(--danger-light);
-  font-weight: 700;
-  animation: blink 1.2s infinite;
-}
-
 /* ===== お知らせ・本文枠 ===== */
-.top-news {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-
-.news {
-  flex: 1;
-  max-width: 360px;
-}
-
-.news h2,
 .login-area h2,
 .post-create-area h2,
 .public-post h2 {
@@ -540,11 +499,8 @@ details a {
 }
 
 .small { font-size: 12px; }
-.normal { font-size: 16px; }
-.big { font-size: 24px; }
 
 /* ===== 画面右下リンク ===== */
-.fixed-wrapper,
 .link-wrapper {
   position: fixed;
   left: 50%;
@@ -637,11 +593,6 @@ details a {
   border-radius: 3px;
   font-family: var(--site-font);
   font-size: 16px;
-}
-
-.admin-attachment-field input[type="file"] {
-  padding: 8px;
-  cursor: pointer;
 }
 
 .upload-help {
@@ -810,21 +761,6 @@ details a {
 .post-submit-button:active { transform: translateY(1px); }
 
 /* ===== 管理画面・投稿管理 ===== */
-.admin-menu { max-height: none; }
-
-.admin-menu ul {
-  margin: 0;
-  padding-left: 24px;
-}
-
-.admin-menu li { margin: 10px 0; }
-
-.admin-menu a {
-  color: var(--blue);
-  font-size: 16px;
-  font-weight: 700;
-}
-
 .post-management,
 .post-create-area {
   width: 100%;
@@ -1127,7 +1063,6 @@ details a {
 
 .public-post h2,
 .post-list-card h2,
-.latest-post-card h3,
 .admin-post-card h3 {
   font-family: var(--post-title-font);
   font-weight: 700;
@@ -1174,62 +1109,6 @@ details a {
 
 .share-button:hover { opacity: 0.8; }
 
-/* ===== 活動内容・企画一覧 ===== */
-.activity-project-section {
-  width: 100%;
-  margin-top: 24px;
-  padding-top: 4px;
-}
-
-.activity-section-title {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 14px;
-  border-bottom: 3px solid var(--cyan);
-}
-
-.activity-section-title h2 {
-  margin: 0 0 6px;
-  color: var(--blue);
-  font-family: var(--post-title-font);
-}
-
-.activity-section-title p {
-  margin: 0 0 7px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.activity-empty-state p {
-  margin: 0;
-}
-
-.activity-project-card > summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  font-family: var(--post-title-font);
-}
-
-.activity-project-card > summary time {
-  flex: 0 0 auto;
-  font-family: var(--site-font);
-  font-size: 12px;
-  font-weight: 400;
-  opacity: 0.85;
-}
-
-.activity-project-content {
-  margin-top: 0;
-}
-
-.activity-project-actions {
-  margin: 16px 0 0;
-  text-align: right;
-}
-
 /* ===== スマホ ===== */
 @media (max-width: 500px) {
   .site-wrapper {
@@ -1238,7 +1117,6 @@ details a {
     border-inline: 0;
   }
 
-  .top-news { gap: 12px; }
   .newsbox { max-height: 500px; }
 
   .post-management-title {
@@ -1267,17 +1145,6 @@ details a {
     grid-template-columns: 1fr;
   }
 
-  .activity-section-title,
-  .activity-project-card > summary {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 3px;
-  }
-
-  .activity-project-actions .post-detail-link {
-    width: 100%;
-    text-align: center;
-  }
 }
 
 
@@ -1786,10 +1653,6 @@ a.home-post-link:hover h3 {
 }
 
 @media (min-width: 761px) {
-  .home-catchcopy {
-    padding: 0;
-  }
-
   .home-catchcopy-main {
     padding: 56px 32px 52px;
   }
@@ -2199,65 +2062,7 @@ a.home-post-link:hover h3 {
   .home-footer-top span { font-size: 16px; }
 }
 
-/* Home: latest posts and news. */
-.home-panels {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  align-items: start;
-  gap: 20px;
-  margin-top: 20px;
-  padding-bottom: 64px;
-}
-
-.home-panel {
-  min-width: 0;
-}
-
-.home-panel > h2 {
-  margin: 0 0 8px;
-  color: var(--blue);
-  border-bottom: 3px solid var(--cyan);
-  font-family: var(--site-font);
-}
-
-.latest-post-card {
-  min-width: 0;
-  padding: 16px 18px;
-  box-sizing: border-box;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-left: 6px solid var(--cyan);
-}
-
-.latest-post-card h3 {
-  margin: 0 0 6px;
-  color: var(--blue);
-  font-size: 22px;
-  overflow-wrap: anywhere;
-}
-
-.latest-post-date {
-  margin: 0 0 14px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.latest-post-body {
-  line-height: 1.8;
-  overflow-wrap: anywhere;
-}
-
-.latest-post-actions {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 18px;
-}
-
 .post-detail-link,
-.all-posts-link,
 .recruitment-link {
   display: inline-flex;
   align-items: center;
@@ -2278,7 +2083,6 @@ a.home-post-link:hover h3 {
 }
 
 .post-detail-link::after,
-.all-posts-link::after,
 .recruitment-link::after {
   content: "";
   flex: 0 0 auto;
@@ -2290,21 +2094,18 @@ a.home-post-link:hover h3 {
 }
 
 .post-detail-link:hover,
-.all-posts-link:hover,
 .recruitment-link:hover {
   background: #004a8f;
   border-color: #004a8f;
 }
 
 .post-detail-link:focus-visible,
-.all-posts-link:focus-visible,
 .recruitment-link:focus-visible {
   outline: 3px solid var(--cyan);
   outline-offset: 3px;
 }
 
 .post-detail-link:active,
-.all-posts-link:active,
 .recruitment-link:active {
   background: #003d75;
   border-color: #003d75;
@@ -2527,17 +2328,7 @@ iframe {
 }
 
 @media (max-width: 500px) {
-  .latest-post-card {
-    padding: 13px 12px;
-  }
-
-  .latest-post-actions {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .post-detail-link,
-  .all-posts-link {
+  .post-detail-link {
     width: 100%;
     text-align: center;
   }
