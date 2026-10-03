@@ -1,0 +1,323 @@
+/* 見出しの9文字だけを収録した毛筆書体。利用条件と出典は font/ に同梱。 */
+@font-face {
+  font-family: "MUC Reform Brush";
+  src: url("../font/reform-yuji-boku.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.home-reform {
+  width: min(100%, 794px);
+  margin: 24px auto 0;
+  container-type: inline-size;
+}
+
+.home-page.site-wrapper { min-width: 0; }
+
+.reform-poster {
+  --reform-ink: #24231f;
+  --reform-red: #ad342a;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 4cqw 5.7cqw;
+  color: var(--reform-ink);
+  font-size: 2cqw;
+  line-height: 1.5;
+  /* 細かな繊維が見える半紙。白を薄く重ね、本文の読みやすさを保つ。 */
+  background-color: #fcfbf8;
+  background-image: linear-gradient(rgb(255 254 251 / 18%), rgb(255 254 251 / 18%)), url("../image/reform-hanshi.jpg");
+  background-size: auto, 640px 640px;
+  background-repeat: repeat;
+  border: 1px solid #e0dfd8;
+  box-shadow: 0 8px 30px rgb(49 43 28 / 7%);
+}
+
+.reform-poster p,
+.reform-poster h2,
+.reform-poster h3,
+.reform-poster h4 { margin: 0; }
+
+.reform-masthead {
+  display: flex;
+  align-items: center;
+  gap: 1.6cqw;
+  padding-bottom: 1.4cqw;
+  font-size: 3.1cqw;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+
+.reform-masthead p {
+  padding: .45em .9em .5em;
+  color: #fcfbf8;
+  background: var(--reform-ink);
+  font-size: .72em;
+  line-height: 1.25;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+
+.reform-masthead::after {
+  content: "";
+  width: clamp(48px, 10cqw, 88px);
+  height: 1px;
+  background: #b4ad9d;
+}
+
+.reform-hero {
+  position: relative;
+  padding: 2.1cqw 0 1cqw;
+  text-align: center;
+}
+
+.reform-kicker {
+  font-size: 1.9cqw;
+  font-weight: 600;
+  letter-spacing: .2em;
+}
+
+.reform-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1cqw;
+  font-family: "MUC Reform Brush", "Yu Mincho", serif;
+  font-weight: 400;
+  font-synthesis: none;
+}
+
+.reform-title-main {
+  display: block;
+  padding-left: .04em;
+  font-size: 27.8cqw;
+  letter-spacing: .04em;
+  line-height: 1.12;
+  transform: rotate(-4deg);
+}
+
+.reform-title-sub {
+  display: block;
+  padding-left: .2em;
+  font-size: 9.8cqw;
+  line-height: 1.2;
+  letter-spacing: -.045em;
+  transform: rotate(-3deg);
+}
+
+.reform-seal {
+  position: absolute;
+  top: 12cqw;
+  right: 1.7cqw;
+  display: grid;
+  place-items: center;
+  width: 4.4cqw;
+  padding: .8cqw .2cqw;
+  color: var(--reform-red);
+  border: 2px solid currentColor;
+  outline: 1px solid currentColor;
+  outline-offset: -5px;
+  border-radius: 3px 1px 4px 2px;
+  font-family: "Yu Mincho", serif;
+  font-size: 2.7cqw;
+  font-weight: 700;
+  line-height: 1.3;
+  writing-mode: vertical-rl;
+  letter-spacing: .12em;
+  transform: rotate(7deg);
+}
+
+.reform-poster .reform-intro {
+  margin: .5cqw 0 2cqw;
+  font-size: 2.05cqw;
+  line-height: 1.9;
+  letter-spacing: .07em;
+  text-align: center;
+}
+
+.reform-community {
+  padding-top: 2.5cqw;
+  border-top: 1px solid #c7c4ba;
+}
+
+.reform-community h3 {
+  font-size: 3.5cqw;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .015em;
+}
+
+.reform-community h3 > span {
+  display: block;
+  margin-bottom: .5cqw;
+  color: #555650;
+  font-size: 1.7cqw;
+  font-weight: 400;
+  letter-spacing: .04em;
+}
+
+.reform-poster .reform-community-intro {
+  margin-top: 1.2cqw;
+  color: #43443e;
+  font-size: 1.9cqw;
+  line-height: 1.85;
+}
+
+.reform-benefits {
+  margin: 1.8cqw 0 2.4cqw;
+  padding: 0;
+  list-style: none;
+}
+
+.reform-benefits li {
+  display: grid;
+  grid-template-columns: 28cqw minmax(0, 1fr);
+  align-items: baseline;
+  gap: 2cqw;
+  padding: 1.35cqw 0;
+  text-align: left;
+}
+
+.reform-benefits li + li { border-top: 1px solid #dfdcd3; }
+
+.reform-benefits h4 {
+  font-size: 2.05cqw;
+  font-weight: 600;
+  line-height: 1.75;
+}
+
+.reform-benefits p {
+  color: #43443e;
+  font-size: 1.8cqw;
+  line-height: 1.85;
+}
+
+.reform-organization {
+  padding: 2.5cqw 0 2.8cqw;
+  border-top: 1px solid #c7c4ba;
+}
+
+.reform-organization h3 {
+  font-size: 2.6cqw;
+  line-height: 1.65;
+  font-weight: 600;
+}
+
+.reform-organization h3 > span { display: inline-block; }
+
+.reform-organization > p {
+  max-width: 40em;
+  margin-top: 1cqw;
+  color: #43443e;
+  font-size: 1.85cqw;
+  line-height: 1.85;
+}
+
+.reform-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2cqw;
+  margin-top: 0;
+  padding-top: 2cqw;
+  border-top: 1px solid #c7c4ba;
+}
+
+.reform-footer div > span {
+  display: block;
+  font-size: 1.32cqw;
+  line-height: 1.8;
+}
+
+.reform-footer .reform-url {
+  font-size: 1.5cqw;
+  letter-spacing: .08em;
+}
+
+.reform-join {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.6cqw;
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: .4cqw 1.8cqw;
+  color: var(--reform-ink);
+  background: transparent;
+  border: 1px solid #777970;
+  font-size: 1.7cqw;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.reform-join:hover { background: #e9e7de; }
+.reform-join span { font-size: 2.8cqw; }
+.reform-join:focus-visible { outline: 3px solid var(--reform-ink); outline-offset: 4px; }
+
+.reform-view-actions {
+  position: relative;
+  margin-top: -4px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.reform-view-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: #45463f;
+  text-underline-offset: 4px;
+}
+
+.reform-poster-open { font-weight: 600; }
+.reform-view-actions a:focus-visible { outline: 2px solid #45463f; outline-offset: 4px; }
+.reform-poster-close { display: none !important; }
+
+/* トップでは見出しだけを見せ、「始めました。」のあたりから背景へ溶け込ませる。 */
+.reform-poster:not(:target) {
+  padding-bottom: 0;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - clamp(44px, 12cqw, 96px)), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - clamp(44px, 12cqw, 96px)), transparent 100%);
+}
+
+/* 隠れたリンクへキーボード操作で移動しないよう、本文自体を非表示にする。 */
+.reform-poster:not(:target) > :is(.reform-intro, .reform-community, .reform-organization, .reform-footer) { display: none; }
+
+/* 告知だけを表示するリンクでは、同じ原稿を全文表示する。 */
+body:has(.reform-poster:target) { background: #e8e5df; }
+body:has(.reform-poster:target) .site-wrapper {
+  width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+body:has(.reform-poster:target) .site-wrapper > :not(.home-reform),
+body:has(.reform-poster:target) .link-wrapper,
+body:has(.reform-poster:target) .reform-poster-open { display: none; }
+body:has(.reform-poster:target) .home-reform { margin: 0 auto; }
+body:has(.reform-poster:target) .reform-poster { box-shadow: none; }
+body:has(.reform-poster:target) .reform-view-actions { padding: 12px 16px; }
+body:has(.reform-poster:target) .reform-poster-close { display: inline-flex !important; }
+
+/* スマホの予告表示では、ラベルと見出し上の説明に読みやすい文字サイズを使う。 */
+@media (max-width: 600px) {
+  body:not(:has(.reform-poster:target)) .home-reform { margin-top: 18px; }
+  body:not(:has(.reform-poster:target)) .reform-poster { padding: 22px 18px 0; }
+  body:not(:has(.reform-poster:target)) .reform-masthead { font-size: 20px; padding-bottom: 10px; }
+  body:not(:has(.reform-poster:target)) .reform-kicker { font-size: 11px; letter-spacing: .1em; }
+  body:has(.reform-poster:target) .reform-join { min-height: 0; padding-block: 1cqw; }
+}
+
+@media print {
+  body:has(.reform-poster:target) .reform-poster {
+    border: 0;
+    box-shadow: none;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  body:has(.reform-poster:target) .reform-view-actions { display: none; }
+}

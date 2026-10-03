@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;display=swap">
-    <link rel="stylesheet" href="../css/main.css?v=20260909-10">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;family=Zen+Maru+Gothic:wght@400;500&amp;display=swap">
+    <link rel="stylesheet" href="../css/main.css?v=20260910-2">
+    <link rel="stylesheet" href="../css/subpages.css?v=20260910-2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://ousmuc.motti-web.com/pages/join.html">
     <title>サークル加入について</title>
@@ -26,17 +27,15 @@
 </head>
 
 <body>
-    <div class="site-wrapper">
-    <header class="site-header">
-      <div class="mbody">
-        <h1>MUC<br>加入方法</h1>
-      </div>
+  <div class="site-wrapper subpage" id="page-top">
+    <header class="site-header home-site-header subpage-header">
       <details class="site-navigation" open>
         <summary class="site-menu-toggle" aria-label="メニュー">
           <span class="site-menu-icon" aria-hidden="true"></span>
         </summary>
         <nav class="header-content" aria-label="メインメニュー">
           <ul class="header-menu">
+            <li><a href="../index.html">TOP</a></li>
             <li><a href="act_menu.php">活動内容</a></li>
             <li><a href="purpose.html">目的</a></li>
             <li><a href="regulations.html">活動規定</a></li>
@@ -46,26 +45,66 @@
           </ul>
         </nav>
       </details>
+      <div class="mbody">
+        <h1><span class="subpage-brand">岡山理科大学 なんかしましょうサークル</span>加入方法</h1>
+      </div>
     </header>
     <div class="page-home-return">
       <a class="home-return-link" href="../index.html">
         <span aria-hidden="true">←</span> ホームへ戻る
       </a>
     </div>
-        <div class="sentence">
-            <p class="normal">
-                サークル加入には、下記リンクからメールを送信してください！<br>
-            </p>
-        <a id="joinmail" href="mailto:ousmuc@gmail.com?subject=MUC加入希望のご連絡&body=こんにちは。岡山理科大学のXX(ハンドルネームを入力)です。%0AMUCへの入会を希望します。">
-            ▸入会希望メールを送る <br>
-        </a>
-        <b>
-            ※※返信が迷惑メールフォルダに入る場合がありますので、ご確認よろしくお願いします※※ <br>
-        </b>
+    <main class="subpage-main">
+      <div class="page-lead">
+        <p>加入をご希望の方は、メールでお申し込みください。</p>
+        <ul class="page-benefits" aria-label="参加について">
+          <li>参加費無料</li>
+          <li>参加自由</li>
+          <li>オンラインコミュニティ有</li>
+        </ul>
+        <p>アイデア豊富な人も、企画に参加したい人も、サークルの運営に関わりたい人も歓迎しています。</p>
+      </div>
 
+      <section class="paper-panel" aria-labelledby="join-steps-title">
+        <h2 id="join-steps-title">加入手順</h2>
+        <ol class="join-steps">
+          <li>
+            <h3>入会希望メールを開く</h3>
+            <p>下のボタンから、宛先と件名、本文が入ったメールを開けます。</p>
+          </li>
+          <li>
+            <h3>ハンドルネームを入れて送信</h3>
+            <p>本文の「XX(ハンドルネームを入力)」をご自身のハンドルネームに書き換えて、送信してください。</p>
+          </li>
+          <li>
+            <h3>返信を確認する</h3>
+            <p>受信箱とあわせて、迷惑メールフォルダもご確認ください。</p>
+          </li>
+        </ol>
+        <div class="page-actions">
+          <a class="recruitment-link" id="joinmail" href="mailto:ousmuc@gmail.com?subject=MUC加入希望のご連絡&amp;body=こんにちは。岡山理科大学のXX(ハンドルネームを入力)です。%0AMUCへの入会を希望します。">入会希望メールを送る</a>
         </div>
+        <p class="page-note">返信が届かない場合は、迷惑メールフォルダをご確認ください。</p>
+      </section>
 
-    </div>
+      <div class="page-actions">
+        <a class="subpage-text-link" href="regulations.html">参加前に活動規定を確認する <span aria-hidden="true">→</span></a>
+      </div>
+    </main>
+
+    <footer class="home-footer">
+      <p class="home-footer-name">
+        <img class="home-footer-icon" src="../image/favicon.png" width="64" height="64" alt="" decoding="async">
+        <span>岡山理科大学<br>なんかしましょうサークル</span>
+      </p>
+      <a class="home-footer-top" href="#page-top">先頭へ戻る <span aria-hidden="true">↑</span></a>
+      <p class="home-footer-contact">
+        <span>HPに関する問い合わせ：</span>
+        <span>ousmuc0315@gmail.com</span>
+      </p>
+      <small>© MUC</small>
+    </footer>
+  </div>
   <div class="link-wrapper">
     <a class="insta-link" href="https://www.instagram.com/ous_muc" target="_blank" rel="noopener noreferrer">Instagram</a>
     <a class="x-link" href="https://x.com/ous_nannkasy0" target="_blank" rel="noopener noreferrer">X.com</a>

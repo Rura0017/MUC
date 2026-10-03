@@ -209,9 +209,10 @@ $fallbackBody = postBodyPlainText($body, $bodyFormat);
   <meta charset="UTF-8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;family=Zen+Maru+Gothic:wght@400;500&amp;display=swap">
 
-  <link rel="stylesheet" href="../css/main.css?v=20260909-10">
+  <link rel="stylesheet" href="../css/main.css?v=20260910-2">
+  <link rel="stylesheet" href="../css/subpages.css?v=20260910-2">
 
   <link
     rel="stylesheet"
@@ -230,17 +231,19 @@ $fallbackBody = postBodyPlainText($body, $bodyFormat);
     href="../image/favicon.png"
     type="image/png"
   >
+  <script src="../scripts/navigation.js?v=20260910-1" defer></script>
 </head>
 
 <body>
-  <div class="site-wrapper">
-    <div class="mbody">
-      <h1>新規作成</h1>
-    </div>
-
-    <div class="under-title">
-      <nav class="header-content">
+  <div class="site-wrapper subpage" id="page-top">
+    <header class="site-header home-site-header subpage-header">
+      <details class="site-navigation" open>
+        <summary class="site-menu-toggle" aria-label="メニュー">
+          <span class="site-menu-icon" aria-hidden="true"></span>
+        </summary>
+      <nav class="header-content" aria-label="管理メニュー">
         <ul class="header-menu">
+          <li><a href="../index.html">TOP</a></li>
           <li><a href="create_post.php" aria-current="page">新規作成</a></li>
           <li>
             <a href="index.php">
@@ -248,15 +251,23 @@ $fallbackBody = postBodyPlainText($body, $bodyFormat);
             </a>
           </li>
 
-          <li>
-            <a href="../index.html">
-              トップページ
-            </a>
-          </li>
         </ul>
       </nav>
+      </details>
+      <div class="mbody">
+        <h1>
+          <span class="subpage-brand">岡山理科大学 なんかしましょうサークル</span>
+          新規作成
+        </h1>
+      </div>
+    </header>
+    <div class="page-home-return">
+      <a class="home-return-link" href="../index.html">
+        <span aria-hidden="true">←</span> ホームへ戻る
+      </a>
     </div>
 
+    <main class="subpage-main">
     <section class="post-create-area">
       <h2>投稿・企画を作成</h2>
 
@@ -392,6 +403,20 @@ $fallbackBody = postBodyPlainText($body, $bodyFormat);
         </form>
       </div>
     </section>
+    </main>
+
+    <footer class="home-footer">
+      <p class="home-footer-name">
+        <img class="home-footer-icon" src="../image/favicon.png" width="64" height="64" alt="" decoding="async">
+        <span>岡山理科大学<br>なんかしましょうサークル</span>
+      </p>
+      <a class="home-footer-top" href="#page-top">先頭へ戻る <span aria-hidden="true">↑</span></a>
+      <p class="home-footer-contact">
+        <span>HPに関する問い合わせ：</span>
+        <span>ousmuc0315@gmail.com</span>
+      </p>
+      <small>© MUC</small>
+    </footer>
   </div>
 
   <div class="link-wrapper">

@@ -1,0 +1,7 @@
+Font: Yuji Boku Regular (400)
+Copyright: 2021 The Yuji Project Authors (https://github.com/Kinutafontfactory/Yuji)
+License: SIL Open Font License 1.1; see OFL-YujiBoku.txt.
+Official specimen: https://fonts.google.com/specimen/Yuji+Boku
+Official license: https://raw.githubusercontent.com/google/fonts/main/ofl/yujiboku/OFL.txt
+reform-yuji-boku.woff2: Google Fonts text subset for 改革、始めました。
+Only these nine characters are included; a changed heading needs a new subset.

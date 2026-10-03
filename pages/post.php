@@ -139,12 +139,13 @@ $shareUrl =
   <meta charset="UTF-8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;family=Zen+Maru+Gothic:wght@400;500&amp;display=swap">
 
   <link
     rel="stylesheet"
-    href="../css/main.css?v=20260909-10"
+    href="../css/main.css?v=20260910-2"
   >
+  <link rel="stylesheet" href="../css/subpages.css?v=20260910-2">
 
   <meta
     name="viewport"
@@ -224,20 +225,15 @@ $shareUrl =
 </head>
 
 <body>
-  <div class="site-wrapper">
-    <header class="site-header">
-      <div class="mbody">
-      <h1>
-        MUC<br>
-        <?= $isProject ? '企画' : '投稿' ?>
-      </h1>
-    </div>
+  <div class="site-wrapper subpage" id="page-top">
+    <header class="site-header home-site-header subpage-header">
       <details class="site-navigation" open>
         <summary class="site-menu-toggle" aria-label="メニュー">
           <span class="site-menu-icon" aria-hidden="true"></span>
         </summary>
         <nav class="header-content" aria-label="メインメニュー">
           <ul class="header-menu">
+            <li><a href="../index.html">TOP</a></li>
             <li><a href="act_menu.php"<?= $isProject ? ' aria-current="location"' : '' ?>>活動内容</a></li>
             <li><a href="purpose.html">目的</a></li>
             <li><a href="regulations.html">活動規定</a></li>
@@ -247,6 +243,12 @@ $shareUrl =
           </ul>
         </nav>
       </details>
+      <div class="mbody">
+        <h1>
+          <span class="subpage-brand">岡山理科大学 なんかしましょうサークル</span>
+          <?= $isProject ? '企画' : '投稿' ?>
+        </h1>
+      </div>
     </header>
     <div class="page-home-return">
       <a class="home-return-link" href="../index.html">
@@ -254,17 +256,16 @@ $shareUrl =
       </a>
     </div>
 
-
-
-
-    <article class="public-post">
+    <main class="subpage-main">
+    <article class="public-post" aria-labelledby="post-title">
+      <header class="page-lead">
       <?php if ($isProject): ?>
         <p class="content-type-badge content-type-activity">
           企画
         </p>
       <?php endif; ?>
 
-      <h2>
+      <h2 id="post-title">
         <?= h($post['title']) ?>
       </h2>
 
@@ -276,6 +277,7 @@ $shareUrl =
             )
         ) ?>
       </p>
+      </header>
 
       <div class="sentence post-content">
         <?= renderPostBody(
@@ -286,7 +288,7 @@ $shareUrl =
 
       <?= renderPostAttachments($attachments) ?>
 
-      <p>
+      <div class="public-post-actions">
         <a
           class="share-button"
           href="<?= h($shareUrl) ?>"
@@ -295,8 +297,25 @@ $shareUrl =
         >
           この<?= $isProject ? '企画' : '投稿' ?>をXで共有
         </a>
-      </p>
+        <a class="subpage-back-link" href="<?= $isProject ? 'act_menu.php' : 'posts.php' ?>">
+          <span aria-hidden="true">←</span> <?= $isProject ? '活動内容' : '投稿一覧' ?>へ戻る
+        </a>
+      </div>
     </article>
+    </main>
+
+    <footer class="home-footer">
+      <p class="home-footer-name">
+        <img class="home-footer-icon" src="../image/favicon.png" width="64" height="64" alt="" decoding="async">
+        <span>岡山理科大学<br>なんかしましょうサークル</span>
+      </p>
+      <a class="home-footer-top" href="#page-top">先頭へ戻る <span aria-hidden="true">↑</span></a>
+      <p class="home-footer-contact">
+        <span>HPに関する問い合わせ：</span>
+        <span>ousmuc0315@gmail.com</span>
+      </p>
+      <small>© MUC</small>
+    </footer>
   </div>
 
   <div class="link-wrapper">

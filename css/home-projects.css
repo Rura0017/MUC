@@ -1,0 +1,226 @@
+/* ホームの企画紹介と募集案内。共通ページのスタイルから独立させる。 */
+.home-other-projects {
+  width: min(92%, 860px);
+  margin: clamp(72px, 11vw, 112px) auto 0;
+  box-sizing: border-box;
+  color: #25444f;
+}
+
+.home-other-projects-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.home-projects-eyebrow {
+  margin: 0 0 20px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .08em;
+}
+
+.home-other-projects h2 {
+  margin: 0;
+  color: inherit;
+  font-size: clamp(36px, 5.8vw, 52px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.035em;
+}
+
+.home-other-projects h2 > span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: .62em;
+  font-weight: 500;
+}
+
+.home-projects-intro {
+  margin: 0;
+  padding-bottom: 8px;
+  color: #647780;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.home-projects-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-projects-list > li {
+  min-width: 0;
+  padding-top: 16px;
+  border-top: 1px solid #b7c8cf;
+}
+
+.home-project-label {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0;
+  color: #5b737e;
+  font-size: 11px;
+  letter-spacing: .08em;
+}
+
+.home-project-label > span {
+  color: #25444f;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.home-project-art {
+  display: block;
+  width: 100%;
+  height: 160px;
+  margin: 16px 0 22px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.home-projects-list h3 {
+  margin: 0;
+  font-size: clamp(17px, 2.1vw, 20px);
+  font-weight: 700;
+  line-height: 1.65;
+  letter-spacing: -.025em;
+}
+
+.home-project-description {
+  margin: 12px 0 0;
+  color: #647780;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.home-project-note {
+  margin: 10px 0 0;
+  color: #647780;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.home-other-projects-more {
+  margin: 40px 0 0;
+  color: #526b75;
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.home-recruitment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: min(92%, 860px);
+  margin: 36px auto 0;
+  padding: 28px 32px;
+  box-sizing: border-box;
+  color: #f4f8fb;
+  background: #173f4b;
+}
+
+.home-recruitment-heading { min-width: 0; }
+
+.home-recruitment h2 {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: .15em;
+  margin: 0;
+  color: inherit;
+  font-family: var(--site-font);
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -.04em;
+}
+
+.home-recruitment h2 > span {
+  display: block;
+  white-space: nowrap;
+}
+
+.home-recruitment h2 > span:last-child { color: #c3e66a; }
+
+.home-recruitment-message {
+  margin: 8px 0 0;
+  color: #c5d7dd;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.home-recruitment .recruitment-link {
+  flex: 0 0 auto;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 54px;
+  padding: 14px 22px;
+  color: #173f4b;
+  background: #c3e66a;
+  border-color: #c3e66a;
+  border-radius: 2px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.home-recruitment .recruitment-link::after {
+  content: "→";
+  width: auto;
+  height: auto;
+  border: 0;
+  font-size: 22px;
+  line-height: 1;
+  transform: none;
+}
+
+.home-recruitment .recruitment-link:hover {
+  background: #d6ef98;
+  border-color: #d6ef98;
+}
+
+.home-recruitment .recruitment-link:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 5px;
+}
+
+@media (max-width: 600px) {
+  .home-other-projects-heading { display: block; margin-bottom: 28px; }
+  .home-projects-eyebrow { margin-bottom: 16px; font-size: 11px; }
+  .home-projects-intro { margin-top: 18px; padding-bottom: 0; font-size: 12px; }
+  .home-projects-list { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .home-projects-list > li {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    grid-template-areas: "label label" "art title" "art description" "art note";
+    column-gap: 18px;
+  }
+  .home-project-label { grid-area: label; margin-bottom: 14px; }
+  .home-project-art { grid-area: art; align-self: center; height: 110px; margin: 0; }
+  .home-projects-list h3 { grid-area: title; align-self: end; font-size: 17px; }
+  .home-project-description { grid-area: description; margin-top: 8px; font-size: 12px; }
+  .home-project-note { grid-area: note; font-size: 9px; }
+  .home-other-projects-more { margin-top: 32px; font-size: 12px; }
+  .home-recruitment {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    margin-top: 28px;
+    padding: 24px 22px;
+  }
+  .home-recruitment h2 { font-size: clamp(24px, 7.2vw, 30px); }
+  .home-recruitment-message { font-size: 12px; }
+  .home-recruitment .recruitment-link { width: 100%; }
+}
+
+@media (max-width: 360px) {
+  .home-projects-list > li { grid-template-columns: 78px minmax(0, 1fr); column-gap: 12px; }
+  .home-projects-list h3 { font-size: 15px; }
+}

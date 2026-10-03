@@ -4,3 +4,14 @@
 /backup/
 /image/uploads/*
 !/image/uploads/.gitkeep
+
+# ローカル設定・秘密情報・実行時データ
+/fiveserver.config.js
+/.env
+/.env.*
+/.aws/
+/.codex/
+/.agents/
+/storage/
+*.log
+__pycache__/

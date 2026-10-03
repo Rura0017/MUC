@@ -4,9 +4,12 @@
   <meta charset="UTF-8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;family=Zen+Maru+Gothic:wght@400;500&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&amp;family=Zen+Maru+Gothic:wght@400;500&amp;display=swap">
 
-  <link rel="stylesheet" href="css/main.css?v=20260910-2">
+  <link rel="stylesheet" href="css/main.css?v=20261003-6">
+  <link rel="stylesheet" href="css/home-projects.css?v=20261003-3">
+  <link rel="preload" href="font/reform-yuji-boku.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/reform.css?v=20261003-1">
   <link rel="canonical" href="https://ousmuc.motti-web.com/">
 
   <meta
@@ -63,8 +66,9 @@
     name="twitter:image"
     content="https://ousmuc.motti-web.com/image/ogp.png"
   >
-<script src="/scripts/navigation.js?v=20260910-1" defer></script>
-<script src="/scripts/news-rotator.js?v=20260908-3" defer></script>
+<script src="./scripts/navigation.js?v=20260910-1" defer></script>
+<script src="./scripts/news-rotator.js?v=20260908-3" defer></script>
+<script src="./scripts/catchcopy-slider.js?v=20260928-2" defer></script>
 </head>
 
 <body>
@@ -134,7 +138,51 @@
       <ul class="home-posts-track" id="recent-post-previews" aria-label="最近の投稿" hidden></ul>
     </section>
 
-    <div class="home-catchcopy">
+    <section class="home-reform" aria-labelledby="reform-title">
+      <article class="reform-poster" id="reform-poster" aria-label="改革のお知らせ">
+        <header class="reform-masthead">
+          <p>お知らせ</p>
+        </header>
+
+        <div class="reform-hero">
+          <p class="reform-kicker">岡理生の、岡理生による、岡理生のための</p>
+          <h2 class="reform-title" id="reform-title">
+            <span class="reform-title-main">改革</span>
+            <span class="reform-title-sub">始めました。</span>
+          </h2>
+          <span class="reform-seal" aria-hidden="true">始動</span>
+        </div>
+
+        <p class="reform-intro">オンラインの居場所も、サークルのカタチも。<br>私たちは、今、変わりはじめています。</p>
+
+        <section class="reform-community" aria-labelledby="reform-community-title">
+          <h3 id="reform-community-title"><span>岡理生のための</span>オンラインコミュニティ</h3>
+          <p class="reform-community-intro">学部や学年を越えてつながり、大学生活の情報を共有しながら、<br>「やってみたい」ことに挑戦できる場をつくっています。</p>
+          <ul class="reform-benefits">
+            <li><h4>多種多様なメンバー</h4><p>いろいろな学部の先輩と交流できるチャンスも。</p></li>
+            <li><h4>大学生活を豊かにする</h4><p>学生生活で役に立つ自炊の知恵や、時間割の相談なども行えます。</p></li>
+            <li><h4>やってみたいを実現する</h4><p>特にAI（≈大規模言語モデル）を使った先進的なアプローチに注力。</p></li>
+          </ul>
+        </section>
+
+        <section class="reform-organization" aria-labelledby="reform-organization-title">
+          <h3 id="reform-organization-title">よりよいサークルを目指して</h3>
+          <p>コミュニティづくりとあわせて、内部の構造や運営体制も変えていきます。</p>
+        </section>
+
+        <footer class="reform-footer">
+          <div><span>岡山理科大学 なんかしましょうサークル（非公認）</span><span class="reform-url">ousmuc.motti-web.com</span></div>
+          <a class="reform-join" href="./pages/join.html">参加方法を見る <span aria-hidden="true">→</span></a>
+        </footer>
+      </article>
+      <div class="reform-view-actions">
+        <a class="reform-poster-open" href="#reform-poster">告知の全文を見る <span aria-hidden="true">→</span></a>
+        <a class="reform-poster-close" href="#page-top">← トップページに戻る</a>
+      </div>
+    </section>
+
+    <section class="home-catchcopy" aria-labelledby="home-philosophy-title">
+      <h2 class="home-catchcopy-heading" id="home-philosophy-title">キャッチコピー</h2>
       <div class="home-catchcopy-main">
         <p class="home-catchcopy-text">
           <span class="home-catchcopy-intro"><span class="home-catchcopy-note">パっと見</span>価値がなさそうな</span>
@@ -152,9 +200,29 @@
           <span>（サークル代表）</span>
         </figcaption>
       </figure>
-    </div>
+    </section>
+
+    <section class="home-introduction" aria-labelledby="home-catchcopy-title">
+      <h2 class="home-catchcopy-heading" id="home-catchcopy-title">MUCとは</h2>
+      <p class="home-catchcopy-description">
+        <span class="home-catchcopy-readable">「企画持ち込み」＋「オンラインコミュニティ」＝なんかしましょうサークル</span>
+        <span class="home-catchcopy-viewport" aria-hidden="true">
+          <span class="home-catchcopy-slide">「企画持ち込み」</span>
+          <span class="home-catchcopy-slide">＋「オンラインコミュニティ」</span>
+          <span class="home-catchcopy-slide">＝なんかしましょうサークル</span>
+        </span>
+      </p>
+    </section>
 
     <section class="home-activity" aria-labelledby="minecraft-title">
+      <div class="home-activity-intro">
+        <div>
+          <p class="home-activity-kicker">なんかしましょうサークル</p>
+          <h2 id="minecraft-title">夏休みマイクラ企画</h2>
+        </div>
+        <p>夏休みにはマイクラの世界で建築を楽しみました。<br>
+          自由な発想から生まれた景色を紹介します。</p>
+      </div>
       <figure class="minecraft-album">
         <div class="minecraft-collage">
           <a
@@ -222,54 +290,89 @@
                 src="./image/minecraft/image0-1120.jpg"
                 width="1920"
                 height="1057"
-                alt="マイクラで「つとむ」と名付けられた白いキャラクター"
+                alt="マイクラで「つとむ」と名付けられたガスト"
                 loading="lazy"
                 decoding="async"
               >
             </picture>
           </a>
         </div>
-        <figcaption class="minecraft-caption">
-          <h2 id="minecraft-title"><span aria-hidden="true">☝</span> 夏休みマイクラ企画</h2>
-        </figcaption>
       </figure>
     </section>
 
-    <section class="home-other-projects" aria-labelledby="other-projects-title">
-      <h2 id="other-projects-title">ほかにも、こんな企画。</h2>
-      <ul>
-        <li><strong>学内お散歩コース作成企画</strong></li>
-        <li><strong>学内うまい水道水を探そうの会（情報処理研究部部長推薦）</strong></li>
-        <li><strong>岡理ゴミ箱マッピング企画</strong></li>
-      </ul>
-      <p class="home-other-projects-more">もちろん、これだけじゃない。</p>
-      <p class="home-other-projects-closing">
-        <strong>あなたのアイデアが、次の企画になる。</strong>
-        <span>思いついたら、まずは一緒にやってみよう。</span>
-      </p>
+    <section class="home-seasonal" aria-labelledby="seasonal-title">
+      <div class="home-seasonal-intro">
+        <div>
+          <p class="home-seasonal-kicker">なんかしましょうサークル</p>
+          <h2 id="seasonal-title">年中行事企画</h2>
+        </div>
+        <p>桜を見に行ったり、七夕の短冊を書いたり。<br>
+          季節の行事をきっかけに、みんなで季節を楽しんでいます。</p>
+      </div>
+
+      <div class="home-seasonal-gallery">
+        <figure class="home-seasonal-event home-seasonal-spring">
+          <div class="home-seasonal-spring-photos">
+            <a href="./image/nenntyu/HFuf7AFawAAnU4_.jpg" target="_blank" rel="noopener noreferrer" aria-label="桜の写真を原寸で開く（新しいタブ）">
+              <img src="./image/nenntyu/HFuf7AFawAAnU4_.jpg" width="2048" height="1152" alt="青空の下に咲く桜" loading="lazy" decoding="async">
+            </a>
+            <a href="./image/nenntyu/HFuf6sWbQAA2DCO.jpg" target="_blank" rel="noopener noreferrer" aria-label="桜の下で食べたハンバーガーの写真を原寸で開く（新しいタブ）">
+              <img src="./image/nenntyu/HFuf6sWbQAA2DCO.jpg" width="1152" height="2048" alt="桜の花びらが散る場所で食べたハンバーガー" loading="lazy" decoding="async">
+            </a>
+          </div>
+          <figcaption><span>春</span> お花見</figcaption>
+        </figure>
+
+        <figure class="home-seasonal-event home-seasonal-summer">
+          <div class="home-seasonal-wishes">
+            <a href="./image/nenntyu/IMG_20260630_144523238.jpg" target="_blank" rel="noopener noreferrer" aria-label="七夕の短冊の写真を原寸で開く（新しいタブ）">
+              <img src="./image/nenntyu/IMG_20260630_144523238.jpg" width="768" height="1020" alt="サークルへの願いを書いた七夕の短冊" loading="lazy" decoding="async">
+            </a>
+            <a href="./image/nenntyu/IMG_9654.jpg" target="_blank" rel="noopener noreferrer" aria-label="七夕の短冊の写真を原寸で開く（新しいタブ）">
+              <img src="./image/nenntyu/IMG_9654.jpg" width="2160" height="2880" alt="自分で行動したいという願いを書いた七夕の短冊" loading="lazy" decoding="async">
+            </a>
+            <a href="./image/nenntyu/PXL_20260707_0341211442.jpg" target="_blank" rel="noopener noreferrer" aria-label="七夕の短冊の写真を原寸で開く（新しいタブ）">
+              <img src="./image/nenntyu/PXL_20260707_0341211442.jpg" width="3000" height="4000" alt="サークルの人数が増えるよう願った七夕の短冊" loading="lazy" decoding="async">
+            </a>
+          </div>
+          <figcaption><span>夏</span> 七夕</figcaption>
+        </figure>
+      </div>
     </section>
 
-    <div class="recruitment-direction" aria-hidden="true">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+    <section class="home-other-projects" id="other-projects" aria-labelledby="other-projects-title">
+      <div class="home-other-projects-heading">
+        <div>
+          <h2 id="other-projects-title"><span>多種多様な</span>企画を考案！</h2>
+        </div>
+      </div>
+      <ul class="home-projects-list">
+        <li>
+          <p class="home-project-label">企画①</p>
+          <img class="home-project-art" src="./image/projects/walking-man.png" width="513" height="800" alt="" loading="lazy" decoding="async">
+          <h3>学内お散歩コース<br>作成企画</h3>
+        </li>
+        <li>
+          <p class="home-project-label">企画②</p>
+          <img class="home-project-art" src="./image/projects/drinking-water-woman.png" width="738" height="738" alt="" loading="lazy" decoding="async">
+          <h3><情報処理研究部部長推薦><br>
+            学内うまい水道水を<br>
+            探そう企画</h3>
+        </li>
+        <li>
+          <p class="home-project-label">企画③</p>
+          <img class="home-project-art" src="./image/projects/campus-map.png" width="800" height="633" alt="" loading="lazy" decoding="async">
+          <h3>岡理ゴミ箱<br>マッピング企画</h3>
+        </li>
+      </ul>
+      <p class="home-other-projects-more">ほかにもたくさん！</p>
+    </section>
 
     <section class="home-recruitment" aria-labelledby="recruitment-title">
       <div class="home-recruitment-heading">
-        <p class="recruitment-eyebrow">MENBER METTYA HOSII</p>
-        <h2 id="recruitment-title"><span>メンバー</span><span>募集中！</span></h2>
+        <h2 id="recruitment-title"><span>メンバー</span><span>募集中</span></h2>
+        <p class="home-recruitment-message">あなたのアイデア、聞かせてください！</p>
       </div>
-      <ul class="home-recruitment-list" aria-label="こんな人が欲しい">
-        <li><strong>アイデア豊富</strong>な人</li>
-        <li>企画した<strong>活動に参加</strong>してみたい人</li>
-        <li>サークルを<strong>成長させたい・運営したい</strong>人</li>
-      </ul>
-      <ul class="home-recruitment-benefits" aria-label="参加について">
-        <li>参加費無料</li>
-        <li>参加自由</li>
-        <li>オンラインコミュニティ有</li>
-      </ul>
       <a class="recruitment-link" href="./pages/join.html">加入方法を見る</a>
     </section>
 

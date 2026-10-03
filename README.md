@@ -1,25 +1,14 @@
-﻿## 概要
-所有サークルのHP
+# MUC
 
-## 技術スタック
-- HTML / CSS
-- PHP / SQlite_DB
-- Caddy → nginx リバースプロキシ / VPS
-- Docker
-- reverse proxy
+岡山理科大学「なんかしましょうサークル」のWebサイト。
 
-## v1.0
-- ログイン機能の追加
-- 投稿機能の追加
-- ホームページの調整
- ##v1.1
-  - バグの修正
+[公開サイト](https://ousmuc.motti-web.com/)
 
-## v2.0β 
-- リッチテキスト化
-- その他細かな修正
+写真・イラスト・フォントの権利は各権利者に帰属します。
+いらすとやの素材には[利用規約](https://www.irasutoya.com/p/terms.html)が適用されます。
 
-## v2.0
-- 主トップページの手直し
-- 活動内容やキャッチコピーをトップで見れるように変更しました。
-- HPに関する連絡先をトップ下部に設置
+- `image/projects/walking-man.png`：[歩く男性](https://www.irasutoya.com/2013/05/blog-post_8558.html)
+- `image/projects/drinking-water-woman.png`：[水分補給をする女性](https://www.irasutoya.com/2018/07/blog-post_320.html)
+- `image/projects/campus-map.png`：[開いた地図](https://www.irasutoya.com/2018/03/blog-post_7.html)
+
+告知の書体「Yuji Boku」の利用許諾は[同梱のライセンス](font/OFL-YujiBoku.txt)を参照してください。
