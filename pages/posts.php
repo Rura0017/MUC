@@ -29,18 +29,6 @@ function makeExcerpt(
     return mb_substr($text, 0, $length, 'UTF-8') . '…';
 }
 
-function formatPostDate(string $createdAt): string
-{
-    try {
-        $date = new DateTime($createdAt, new DateTimeZone('UTC'));
-        $date->setTimezone(new DateTimeZone('Asia/Tokyo'));
-
-        return $date->format('Y/m/d H:i');
-    } catch (Exception) {
-        return $createdAt;
-    }
-}
-
 $posts = db()
     ->query(
         '
@@ -70,7 +58,7 @@ $posts = db()
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;family=Zen+Maru+Gothic:wght@400;500&amp;display=swap">
 
-  <link rel="stylesheet" href="../css/main.css?v=20260910-2">
+  <link rel="stylesheet" href="../css/main.css?v=20261003-7">
   <link rel="stylesheet" href="../css/subpages.css?v=20260910-2">
 
   <meta

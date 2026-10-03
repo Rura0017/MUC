@@ -14,27 +14,6 @@ require_once __DIR__ . '/../include/db.php';
 require_once __DIR__ . '/../include/post_renderer.php';
 require_once __DIR__ . '/../include/post_attachments.php';
 
-/**
- * SQLiteの日時を日本時間の表示用文字列へ変換する。
- */
-function formatPostDate(string $createdAt, string $format = 'Y/m/d H:i'): string
-{
-    try {
-        $date = new DateTime(
-            $createdAt,
-            new DateTimeZone('UTC')
-        );
-
-        $date->setTimezone(
-            new DateTimeZone('Asia/Tokyo')
-        );
-
-        return $date->format($format);
-    } catch (Exception) {
-        return $createdAt;
-    }
-}
-
 try {
     $pdo = db();
 

@@ -45,7 +45,7 @@ unset($_SESSION['password_change_result']);
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;family=Zen+Maru+Gothic:wght@400;500&amp;display=swap">
 
-  <link rel="stylesheet" href="../css/main.css?v=20260910-2">
+  <link rel="stylesheet" href="../css/main.css?v=20261003-7">
   <link rel="stylesheet" href="../css/subpages.css?v=20260910-2">
 
   <meta

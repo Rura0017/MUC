@@ -6,27 +6,6 @@ require_once __DIR__ . '/../include/db.php';
 require_once __DIR__ . '/../include/post_renderer.php';
 require_once __DIR__ . '/../include/post_attachments.php';
 
-/**
- * SQLiteの日時を日本時間へ変換する。
- */
-function formatPostDate(string $createdAt): string
-{
-    try {
-        $date = new DateTime(
-            $createdAt,
-            new DateTimeZone('UTC')
-        );
-
-        $date->setTimezone(
-            new DateTimeZone('Asia/Tokyo')
-        );
-
-        return $date->format('Y/m/d H:i');
-    } catch (Exception) {
-        return $createdAt;
-    }
-}
-
 // URLのidパラメーターから投稿IDを取得する
 $postId = filter_input(
     INPUT_GET,
@@ -131,7 +110,7 @@ $shareUrl =
 
   <link
     rel="stylesheet"
-    href="../css/main.css?v=20260910-2"
+    href="../css/main.css?v=20261003-7"
   >
   <link rel="stylesheet" href="../css/subpages.css?v=20260910-2">
 

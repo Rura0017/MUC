@@ -8,6 +8,27 @@ const POST_BODY_MAX_TEXT_LENGTH = 10000;
 const POST_BODY_MAX_JSON_LENGTH = 200000;
 const POST_BODY_MAX_OPERATIONS = 2000;
 
+/**
+ * SQLiteの日時を日本時間の表示用文字列へ変換する。
+ */
+function formatPostDate(string $createdAt, string $format = 'Y/m/d H:i'): string
+{
+    try {
+        $date = new DateTime(
+            $createdAt,
+            new DateTimeZone('UTC')
+        );
+
+        $date->setTimezone(
+            new DateTimeZone('Asia/Tokyo')
+        );
+
+        return $date->format($format);
+    } catch (Exception) {
+        return $createdAt;
+    }
+}
+
 function escapePostHtml(string $value): string
 {
     return htmlspecialchars(
