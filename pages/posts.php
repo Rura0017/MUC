@@ -54,6 +54,7 @@ $posts = db()
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="description" content="岡山理科大学なんかしましょうサークル（MUC）の投稿一覧です。投稿の概要を確認し、個別の投稿をご覧いただけます。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;family=Zen+Maru+Gothic:wght@400;500&amp;display=swap">
@@ -67,6 +68,7 @@ $posts = db()
   >
 
   <title>投稿一覧 | MUC</title>
+  <link rel="canonical" href="https://ousmuc.motti-web.com/pages/posts.php">
 
   <link
     rel="icon"

@@ -9,6 +9,7 @@ require_once __DIR__ . '/../include/security.php';
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="description" content="岡山理科大学なんかしましょうサークル（MUC）の活動内容ページです。現在、内容を整備しています。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&amp;family=Zen+Maru+Gothic:wght@400;500&amp;display=swap">

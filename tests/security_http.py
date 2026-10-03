@@ -95,6 +95,10 @@ $stmt->execute(['security-test', password_hash('test-only-password-123', PASSWOR
                         time.sleep(.05)
                 else:
                     raise RuntimeError('PHP server did not start')
+                status, headers, _ = request('/api/latest_post.php?previews=1')
+                assert status == 200
+                assert headers['X-Robots-Tag'] == 'noindex', 'preview data is crawlable but not a search page'
+                assert 'X-Robots-Tag' not in request('/index.html')[1], 'homepage remains indexable'
                 assert request('/admin/create_post.php')[0] == 302
                 assert request('/admin/delete_post.php', {'post_id': '1'})[0] == 302
                 assert request('/admin/change_password.php', {'new_password': 'unauthenticated'})[0] == 302

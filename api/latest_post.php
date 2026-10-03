@@ -10,6 +10,9 @@ header(
     'Cache-Control: no-store, no-cache, must-revalidate'
 );
 
+// 投稿表示用のデータは取得を許可し、単独で検索結果には載せない。
+header('X-Robots-Tag: noindex');
+
 require_once __DIR__ . '/../include/db.php';
 require_once __DIR__ . '/../include/post_renderer.php';
 require_once __DIR__ . '/../include/post_attachments.php';
